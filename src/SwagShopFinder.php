@@ -4,6 +4,7 @@ namespace SwagShopFinder;
 
 use Shopware\Core\Framework\Plugin;
 
+
 class SwagShopFinder extends Plugin
 {
 }
