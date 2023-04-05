@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace SwagShopFinder\Core\Content\Example;
+namespace SwagShopFinder\Core\Content\ShopFinder;
 
 use Shopware\Core\Framework\DataAbstractionLayer\EntityDefinition;
 use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
@@ -19,3 +19,6 @@ class ExampleDefinition extends EntityDefinition
         return new FieldCollection([]);   //define database field
     }
 }
+
+
+
