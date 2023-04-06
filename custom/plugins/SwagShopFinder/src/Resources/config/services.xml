@@ -5,6 +5,9 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <service id="SwagShopFinder\Core\Content\ShopFinder\ShopFinderDefinition">
+           <tag name="shopware.entity.definition" entity="swag_shop_finder"/>
+        </service>
 
     </services>
 </container>
