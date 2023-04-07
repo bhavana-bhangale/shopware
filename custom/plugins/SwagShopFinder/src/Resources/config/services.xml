@@ -9,5 +9,9 @@
            <tag name="shopware.entity.definition" entity="swag_shop_finder"/>
         </service>
 
+        <service id="SwagShopFinder\Core\Content\Extension\CountryExtension">
+            <tag name="shopware.entity.extension" />
+        </service>
+
     </services>
 </container>
