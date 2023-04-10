@@ -5,13 +5,28 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+    <!--Start Plugin Definition-->
         <service id="SwagShopFinder\Core\Content\ShopFinder\ShopFinderDefinition">
            <tag name="shopware.entity.definition" entity="swag_shop_finder"/>
         </service>
+    <!--End Plugin Definition-->
 
+    <!--Start Translation Definition-->
+        <service id="SwagShopFinder\Core\Content\ShopFinder\Aggregate\ShopFinderTranslation\ShopFinderTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="swag_shop_finder_translation" />
+        </service>
+    <!--End Translation Definition-->
+
+        <!--  start Language extension -->
+        <service id="SwagShopFinder\Core\Content\Extension\LanguageExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+        <!--End Language extension-->
+
+    <!--Start Country Extension-->
         <service id="SwagShopFinder\Core\Content\Extension\CountryExtension">
             <tag name="shopware.entity.extension" />
         </service>
-
+    <!--End Country Extension-->
     </services>
 </container>

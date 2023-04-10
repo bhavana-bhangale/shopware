@@ -10,8 +10,11 @@ use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Required;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\IdField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\ManyToOneAssociationField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\StringField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslatedField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslationsAssociationField;
 use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
 use Shopware\Core\System\Country\CountryDefinition;
+use SwagShopFinder\Core\Content\ShopFinder\Aggregate\ShopFinderTranslation\ShopFinderTranslationDefinition;
 
 class ShopFinderDefinition extends EntityDefinition
 {
@@ -36,17 +39,23 @@ class ShopFinderDefinition extends EntityDefinition
         return new FieldCollection([
             (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
             new BoolField('active', 'active'),
-            (new StringField('name', 'name'))->addFlags(new Required()),
-            (new StringField('description', 'description'))->addFlags(new Required()),
+            new TranslatedField('name'),
+            new TranslatedField('description'),
             (new StringField('city','city'))->addFlags(new Required()),
             new StringField('telephone','telephone'),
             new FkField('country_id','countryId',CountryDefinition::class),
+            //Association
             new ManyToOneAssociationField(
                 'country',
                 'country_id',
                 CountryDefinition::class,
                 'id',
                 false
+            ),
+            //Translation
+            new TranslationsAssociationField(
+                ShopFinderTranslationDefinition::class,
+                'swag_shop_finder_id'
             )
 
 

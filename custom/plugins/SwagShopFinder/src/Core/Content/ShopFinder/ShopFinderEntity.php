@@ -5,6 +5,7 @@ namespace SwagShopFinder\Core\Content\ShopFinder;
 use Shopware\Core\Framework\DataAbstractionLayer\Entity;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityIdTrait;
 use Shopware\Core\System\Country\CountryEntity;
+use SwagShopFinder\Core\Content\ShopFinder\Aggregate\ShopFinderTranslation\ShopFinderTranslationCollection;
 
 class ShopFinderEntity extends Entity
 {
@@ -51,6 +52,11 @@ class ShopFinderEntity extends Entity
     protected $country;
 
     /**
+     * @var ShopFinderTranslationCollection|null
+     */
+    protected $translations;
+
+    /**
      * @var \DateTimeInterface
      */
     protected $createdAt;
@@ -59,6 +65,11 @@ class ShopFinderEntity extends Entity
      * @var \DateTimeInterface|null
      */
     protected $updatedAt;
+
+    /**
+     * @var array|null
+     */
+    protected $translated;
 
     public function getId(): string
     {
@@ -140,6 +151,16 @@ class ShopFinderEntity extends Entity
         $this->country = $country;
     }
 
+    public function getTranslations(): ShopFinderTranslationCollection
+    {
+        return $this->translations;
+    }
+
+    public function setTranslations(ShopFinderTranslationCollection $translations): void
+    {
+        $this->translations = $translations;
+    }
+
     public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;
@@ -158,5 +179,15 @@ class ShopFinderEntity extends Entity
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    public function getTranslated(): array
+    {
+        return $this->translated;
+    }
+
+    public function setTranslated(?array $translated): void
+    {
+        $this->translated = $translated;
     }
 }
