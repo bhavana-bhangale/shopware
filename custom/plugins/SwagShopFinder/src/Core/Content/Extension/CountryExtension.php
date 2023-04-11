@@ -11,7 +11,7 @@ class CountryExtension extends EntityExtension
     public function extendFields(FieldCollection $collection): void
     {
       $collection->add(
-          new OneToManyAssociationField('country_id',
+          new OneToManyAssociationField('countryId',
               ShopFinderDefinition::class,
               'id')
       );

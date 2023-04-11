@@ -46,7 +46,7 @@ class ShopFinderDefinition extends EntityDefinition
             new FkField('country_id','countryId',CountryDefinition::class),
             //Association
             new ManyToOneAssociationField(
-                'country',
+                'country',//Use property for Country Definition
                 'country_id',
                 CountryDefinition::class,
                 'id',
