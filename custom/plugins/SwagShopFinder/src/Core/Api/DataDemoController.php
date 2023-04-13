@@ -61,9 +61,7 @@ class DataDemoController extends AbstractController
             ];
         }
         $this->shopFinderRepository->create($data,$context);
-        return new Response('',Response::HTTP_NO_CONTENT);
-
-
+        return new Response('Success');
     }
 
     /**

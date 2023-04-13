@@ -1,0 +1,19 @@
+{
+  "name": "swag/data-demo",
+  "description": "Data Demo plugin",
+    "version": "v1.0.0",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "SwagDataDemo\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "SwagDataDemo\\SwagDataDemo",
+    "label": {
+      "de-DE": "Skeleton plugin",
+      "en-GB": "Skeleton plugin"
+    }
+  }
+}

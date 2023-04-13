@@ -17,6 +17,12 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
+        </service>
+
+        <service id="SwagShopFinder\Storefront\Subscriber\FooterSubscriber">
+            <argument id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument id="swag_shop_finder.repository" type="service"/>
+            <tag name="kernel.event_subscriber"/>
 
         </service>
     <!--End Plugin Definition-->
