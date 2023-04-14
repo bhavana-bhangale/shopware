@@ -12,9 +12,9 @@ class MediaExtension extends EntityExtension
     {
       $collection->add(
           new OneToOneAssociationField(
-              'imageId',
-              'image_id',
+              'media',
               'id',
+              'media_id',
               DataDemoDefinition::class
           )
       );

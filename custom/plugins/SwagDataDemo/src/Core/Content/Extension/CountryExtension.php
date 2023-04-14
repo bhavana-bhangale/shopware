@@ -11,9 +11,9 @@ class CountryExtension extends EntityExtension
     public function extendFields(FieldCollection $collection): void
     {
        $collection->add(
-           new OneToManyAssociationField('countryId',
+           new OneToManyAssociationField('country',
                DataDemoDefinition::class,
-           'id')
+           'country_id')
        );
     }
 

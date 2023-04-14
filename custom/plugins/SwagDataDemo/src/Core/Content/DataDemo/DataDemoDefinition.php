@@ -5,11 +5,14 @@ use Shopware\Core\Content\Product\ProductDefinition;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityDefinition;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\BoolField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\FkField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\ApiAware;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Inherited;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\PrimaryKey;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Required;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\IdField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\ManyToOneAssociationField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\OneToOneAssociationField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\ReferenceVersionField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslatedField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslationsAssociationField;
 use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
@@ -41,12 +44,13 @@ class DataDemoDefinition extends EntityDefinition
             new TranslatedField('name'),
             new TranslatedField('city'),
             new FkField('country_id','countryId',CountryDefinition::class),
-            new FkField('state_id', 'stateId',CountryStateDefinition::class),
-            new FkField('image_id','imageId',MediaDefinition::class),
-            new FkField('product_id','productId',ProductDefinition::class),
+            new FkField('country_state_id', 'countryState',CountryStateDefinition::class),
+            new FkField('media_id','media',MediaDefinition::class),
+            (new FkField('product_id','product',ProductDefinition::class))->addFlags(new Required()),
+            (new ReferenceVersionField(ProductDefinition::class))->addFlags(new ApiAware(),new Inherited()),
             //Country Association
             new ManyToOneAssociationField(
-                'countryId',
+                'country',
                 'country_id',
                 CountryDefinition::class,
                 'id',
@@ -54,26 +58,26 @@ class DataDemoDefinition extends EntityDefinition
             ),
             //State Association
             new ManyToOneAssociationField(
-                'stateId',
-                'state_id',
+                'countryState',
+                'country_state_id',
                 CountryStateDefinition::class,
                 'id',
                 false
             ),
             //Image Association
             new OneToOneAssociationField(
-                'imageId',
-                'image_id',
+                'media',
+                'media_id',
                 'id',
                 MediaDefinition::class,
                 false
             ),
             //Product Association
             new ManyToOneAssociationField(
-                'productId',
+                'product',
                 'product_id',
-                'id',
                 ProductDefinition::class,
+                'id',
                 false
             ),
             //Translation
@@ -84,3 +88,4 @@ class DataDemoDefinition extends EntityDefinition
         ]);
     }
 }
+

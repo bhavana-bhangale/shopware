@@ -13,7 +13,7 @@
 
         <!--Start Translation Definition-->
         <service id="SwagDataDemo\Core\Content\DataDemo\Aggregate\DataDemoTranslation\DataDemoTranslationDefinition">
-            <tag name="shopware.entity.definition" entity="swag_data_demo_translation" />
+            <tag name="shopware.entity.definition" entity="swag_data_demo_translation"/>
         </service>
         <!--End Translation Definition-->
 
@@ -28,6 +28,12 @@
             <tag name="shopware.entity.extension" />
         </service>
         <!--End State Extension-->
+
+        <!--Start Language Extension-->
+        <service id="SwagDataDemo\Core\Content\Extension\LanguageExtension">
+            <tag name="shopware.entity.extension" />
+        </service>
+        <!--End Language Extension-->
 
         <!--Start Media Extension-->
         <service id="SwagDataDemo\Core\Content\Extension\MediaExtension">

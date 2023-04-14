@@ -12,7 +12,7 @@ class StateExtension extends EntityExtension
     {
         $collection->add(
             new OneToManyAssociationField(
-                'stateId',
+                'countryState',
                 DataDemoDefinition::class,
                 'id'
             )
