@@ -4,10 +4,10 @@ namespace SwagDataDemo\Core\Content\DataDemo;
 
 use Shopware\Core\Framework\DataAbstractionLayer\Entity;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityIdTrait;
+use Shopware\Core\System\Country\CountryEntity;
 use Shopware\Core\System\Country\Aggregate\CountryState\CountryStateEntity;
 use Shopware\Core\Content\Media\MediaEntity;
 use Shopware\Core\Content\Product\ProductEntity;
-use Shopware\Core\System\Country\CountryEntity;
 use SwagDataDemo\Core\Content\DataDemo\Aggregate\DataDemoTranslation\DataDemoTranslationCollection;
 
 class DataDemoEntity extends Entity
@@ -40,6 +40,26 @@ class DataDemoEntity extends Entity
     protected $countryId;
 
     /**
+     * @var string|null
+     */
+    protected $countryStateId;
+
+    /**
+     * @var string|null
+     */
+    protected $mediaId;
+
+    /**
+     * @var string|null
+     */
+    protected $productId;
+
+    /**
+     * @var CountryEntity|null
+     */
+    protected $country;
+
+    /**
      * @var CountryStateEntity|null
      */
     protected $countryState;
@@ -53,11 +73,6 @@ class DataDemoEntity extends Entity
      * @var ProductEntity|null
      */
     protected $product;
-
-    /**
-     * @var CountryEntity|null
-     */
-    protected $country;
 
     /**
      * @var DataDemoTranslationCollection|null
@@ -129,6 +144,46 @@ class DataDemoEntity extends Entity
         $this->countryId = $countryId;
     }
 
+    public function getCountryStateId(): ?string
+    {
+        return $this->countryStateId;
+    }
+
+    public function setCountryStateId(?string $countryStateId): void
+    {
+        $this->countryStateId = $countryStateId;
+    }
+
+    public function getMediaId(): ?string
+    {
+        return $this->mediaId;
+    }
+
+    public function setMediaId(?string $mediaId): void
+    {
+        $this->mediaId = $mediaId;
+    }
+
+    public function getProductId(): ?string
+    {
+        return $this->productId;
+    }
+
+    public function setProductId(?string $productId): void
+    {
+        $this->productId = $productId;
+    }
+
+    public function getCountry(): ?CountryEntity
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?CountryEntity $country): void
+    {
+        $this->country = $country;
+    }
+
     public function getCountryState(): ?CountryStateEntity
     {
         return $this->countryState;
@@ -159,17 +214,7 @@ class DataDemoEntity extends Entity
         $this->product = $product;
     }
 
-    public function getCountry(): ?CountryEntity
-    {
-        return $this->country;
-    }
-
-    public function setCountry(?CountryEntity $country): void
-    {
-        $this->country = $country;
-    }
-
-    public function getTranslations(): ?DataDemoTranslationCollection
+    public function getTranslations(): DataDemoTranslationCollection
     {
         return $this->translations;
     }

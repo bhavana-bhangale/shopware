@@ -3,6 +3,7 @@
 namespace SwagDataDemo\Core\Content\DataDemo\Aggregate\DataDemoTranslation;
 
 use Shopware\Core\Framework\DataAbstractionLayer\EntityCollection;
+use Shopware\Core\Framework\Log\Package;
 
 /**
  * @method void                add(DataDemoTranslationEntity $entity)

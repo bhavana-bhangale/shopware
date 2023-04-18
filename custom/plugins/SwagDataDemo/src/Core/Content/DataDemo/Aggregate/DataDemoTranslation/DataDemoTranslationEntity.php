@@ -56,7 +56,7 @@ class DataDemoTranslationEntity extends Entity
         return $this->name;
     }
 
-    public function setName(?string $name): void
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
@@ -66,7 +66,7 @@ class DataDemoTranslationEntity extends Entity
         return $this->city;
     }
 
-    public function setCity(?string $city): void
+    public function setCity(string $city): void
     {
         $this->city = $city;
     }
@@ -76,7 +76,7 @@ class DataDemoTranslationEntity extends Entity
         return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeInterface $createdAt): void
+    public function setCreatedAt(\DateTimeInterface $createdAt): void
     {
         $this->createdAt = $createdAt;
     }

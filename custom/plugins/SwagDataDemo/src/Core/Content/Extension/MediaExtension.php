@@ -15,7 +15,8 @@ class MediaExtension extends EntityExtension
               'media',
               'id',
               'media_id',
-              DataDemoDefinition::class
+              DataDemoDefinition::class,
+              false
           )
       );
     }

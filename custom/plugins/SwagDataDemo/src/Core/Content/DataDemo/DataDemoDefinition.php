@@ -35,7 +35,6 @@ class DataDemoDefinition extends EntityDefinition
     {
         return DataDemoCollection::class;
     }
-
     protected function defineFields(): FieldCollection
     {
         return new FieldCollection([
@@ -43,11 +42,14 @@ class DataDemoDefinition extends EntityDefinition
             new BoolField('active','active'),
             new TranslatedField('name'),
             new TranslatedField('city'),
+
             new FkField('country_id','countryId',CountryDefinition::class),
-            new FkField('country_state_id', 'countryState',CountryStateDefinition::class),
-            new FkField('media_id','media',MediaDefinition::class),
-            (new FkField('product_id','product',ProductDefinition::class))->addFlags(new Required()),
+            new FkField('country_state_id', 'countryStateId',CountryStateDefinition::class),
+            new FkField('media_id','mediaId',MediaDefinition::class),
+            (new FkField('product_id','productId',ProductDefinition::class)),
             (new ReferenceVersionField(ProductDefinition::class))->addFlags(new ApiAware(),new Inherited()),
+
+
             //Country Association
             new ManyToOneAssociationField(
                 'country',
@@ -64,6 +66,7 @@ class DataDemoDefinition extends EntityDefinition
                 'id',
                 false
             ),
+
             //Image Association
             new OneToOneAssociationField(
                 'media',

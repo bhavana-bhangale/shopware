@@ -12,7 +12,7 @@ class ProductExtension extends EntityExtension
     {
         $collection->add(
             new OneToManyAssociationField(
-                'product',
+                'productId',
                 DataDemoDefinition::class,
                 'id'
             )
