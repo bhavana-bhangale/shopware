@@ -5,6 +5,46 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <!--Start Blog Translation Definition-->
+        <service id="SwagBlogDemo\Core\Content\BlogDemo\Aggregate\BlogDemoTranslation\BlogDemoTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="swag_blog_demo_translation"/>
+        </service>
+        <!--End Blog Translation Definition-->
+        <!--Start Blog Plugin Definition-->
+        <service id="SwagBlogDemo\Core\Content\BlogDemo\BlogDemoDefinition">
+            <tag name="shopware.entity.definition" entity="swag_blog_demo"/>
+        </service>
+        <!--End Blog Plugin Definition-->
+
+        <!--Start Category Blog Translation Definition-->
+        <service id="SwagBlogDemo\Core\Content\BlogCategory\Aggregate\BlogCategoryTranslation\BlogCategoryTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="swag_blog_category_translation"/>
+        </service>
+        <!--End Category Blog Translation Definition-->
+
+        <!--Start Category Blog Plugin Definition-->
+        <service id="SwagBlogDemo\Core\Content\BlogCategory\BlogCategoryDefinition">
+            <tag name="shopware.entity.definition" entity="swag_blog_category"/>
+        </service>
+        <!--End Category Blog Plugin Definition-->
+
+        <!--Start Language Extension-->
+        <service id="SwagBlogDemo\Core\Content\Extension\LanguageExtension">
+            <tag name="shopware.entity.extension" />
+        </service>
+        <!--End Language Extension-->
+
+        <!--Start Product Extension-->
+        <service id="SwagBlogDemo\Core\Content\Extension\ProductExtension">
+            <tag name="shopware.entity.extension" />
+        </service>
+        <!--End Product Extension-->
+
+        <!--Start ProductBlogMapping Definition-->
+        <service id="SwagBlogDemo\Core\Content\Mapping\ProductBlogMappingDefinition">
+            <tag name="shopware.entity.definition" entity="swag_blog_product_map"/>
+        </service>
+        <!--End ProductBlogMapping Definition-->
 
     </services>
 </container>

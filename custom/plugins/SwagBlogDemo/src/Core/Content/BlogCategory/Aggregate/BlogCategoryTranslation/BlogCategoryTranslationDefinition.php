@@ -4,10 +4,11 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityTranslationDefinition;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Required;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\StringField;
 use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
+use SwagBlogDemo\Core\Content\BlogCategory\BlogCategoryDefinition;
 
 class BlogCategoryTranslationDefinition extends EntityTranslationDefinition
 {
-    public const ENTITY_NAME="swag_blog_demo_translation";
+    public const ENTITY_NAME="swag_blog_category_translation";
     public function getEntityName(): string
     {
         return self::ENTITY_NAME;

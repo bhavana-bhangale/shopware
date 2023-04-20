@@ -21,6 +21,7 @@ use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\BoolField;
 use SwagBlogDemo\Core\Content\BlogCategory\BlogCategoryDefinition;
 use SwagBlogDemo\Core\Content\BlogDemo\Aggregate\BlogDemoTranslation\BlogDemoTranslationDefinition;
+use SwagBlogDemo\Core\Content\Mapping\ProductBlogMappingDefinition;
 
 class BlogDemoDefinition extends EntityDefinition
 {
@@ -47,7 +48,7 @@ class BlogDemoDefinition extends EntityDefinition
             new TranslatedField('description'),
             (new DateTimeField('release_date','releaseDate'))->addFlags(new ApiAware(),new Inherited()),
             new BoolField('active','active'),
-            new FkField('category_id','categoryId',CategoryDefinition::class),
+            new FkField('swag_blog_category_id','swagBlogCategoryId',BlogCategoryDefinition::class),
             (new StringField('author','author')),
 
             //Category Association
@@ -62,9 +63,12 @@ class BlogDemoDefinition extends EntityDefinition
             new ManyToManyAssociationField(
                 'products',
                 ProductDefinition::class,
-                ProductCategoryMappingDefintion::class,
+                ProductBlogMappingDefinition::class,
                 'swag_blog_demo_id',
-                'product_id'
+                'product_id',
+                'id',
+                'id',
+
             ),
             //Translation
             new TranslationsAssociationField(
