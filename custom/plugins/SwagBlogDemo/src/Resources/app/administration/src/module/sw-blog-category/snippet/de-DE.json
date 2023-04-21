@@ -1,0 +1,39 @@
+{
+    "sw-blog-category": {
+        "general": {
+            "mainMenuItemList": "Blog-Kategorie",
+            "mainMenuItemGeneral": "Blog-Kategorie",
+            "placeholderSearchBar": "Kategorie suchen..."
+        },
+        "list": {
+            "textManufacturerOverview": "Blog-Kategorie",
+            "textTotalManufacturer": "NEIN blog kategorie |Ein Blog Kategorie | {count} Blog-Kategorie",
+            "buttonAddManufacturer": "Blog-Kategorie hinzufügen",
+            "columnName": "Blog-Kategorie",
+            "columnLink": "Website"
+        },
+        "detail": {
+            "textHeadline": "Neue Blog-Kategorie",
+            "textMediaSelection": "Medienauswahl",
+            "buttonCancel": "Stornieren",
+            "buttonSave": "Speichern",
+            "cardTitleManufacturerInfo": "Informationen zur Blog-Kategorie",
+            "labelName": "Name",
+            "labelDescription": "Beschreibung",
+            "labelLink": "Website",
+            "placeholderName": "Geben Sie den Namen der Blog-Kategorie ein...",
+            "placeholderDescription": "Beschreibung eingeben...",
+            "placeholderLink": "Geben Sie die Website der Blog-Kategorie ein...",
+            "messageSaveSuccess": "Blog-Kategorie \"{name}\" wurde gespeichert.",
+            "labelLogo": "Logo",
+            "labelUseAsLogo": "Als Logo verwenden"
+        }
+    },
+    "sw-privileges": {
+        "permissions": {
+            "product_manufacturer": {
+                "label": "Blog Kategorie"
+            }
+        }
+    }
+}

@@ -5,7 +5,7 @@
 import './page/sw-blog-list';
 import './page/sw-blog-detail';
 import './acl';
-import defaultSearchConfiguration from './default-search-configuration';
+// import defaultSearchConfiguration from './default-search-configuration';
 
 const { Module } = Shopware;
 
@@ -14,7 +14,7 @@ Module.register('sw-blog', {
     type: 'core',
     name: 'blog',
     title: 'sw-blog.general.mainMenuItemGeneral',
-    description: 'Manages the manufacturer of the application',
+    description: 'sw-blog.general.mainMenuItemDescription',
     version: '1.0.0',
     targetVersion: '1.0.0',
     color: '#57D9A3',
@@ -29,28 +29,28 @@ Module.register('sw-blog', {
             },
             path: 'index',
             meta: {
-                privilege: 'product_manufacturer.viewer',
+                privilege: 'blog.viewer',
             },
         },
         create: {
             component: 'sw-blog-detail',
             path: 'create',
             meta: {
-                parentPath: 'sw.manufacturer.index',
-                privilege: 'product_manufacturer.creator',
+                parentPath: 'sw.blog.index',
+                privilege: 'blog.creator',
             },
         },
         detail: {
             component: 'sw-blog-detail',
             path: 'detail/:id',
             meta: {
-                parentPath: 'sw.manufacturer.index',
-                privilege: 'product_manufacturer.viewer',
+                parentPath: 'sw.blog.index',
+                privilege: 'blog.viewer',
             },
             props: {
                 default(route) {
                     return {
-                        manufacturerId: route.params.id,
+                        blogId: route.params.id,
                     };
                 },
             },
@@ -58,14 +58,14 @@ Module.register('sw-blog', {
     },
 
     navigation: [{
-        path: 'sw.manufacturer.index',
-        privilege: 'product_manufacturer.viewer',
-        label: 'sw-manufacturer.general.mainMenuItemList',
-        id: 'sw-manufacturer',
+        path: 'sw.blog.index',
+        privilege: 'blog.viewer',
+        label: 'sw-blog.general.mainMenuItemList',
+        id: 'sw-blog',
         parent: 'sw-catalogue',
         color: '#57D9A3',
-        position: 50,
+        position: 52,
     }],
 
-    defaultSearchConfiguration,
+    // defaultSearchConfiguration,
 });
