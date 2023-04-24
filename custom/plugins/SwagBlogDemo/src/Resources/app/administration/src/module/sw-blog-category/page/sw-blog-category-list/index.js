@@ -44,14 +44,10 @@ Component.register('sw-blog-category-list', {
                 property: 'name',
                 dataIndex: 'name',
                 allowResize: true,
-                routerLink: 'sw.blog-category.detail',
+                routerLink: 'sw.blog.category.detail',
                 label: 'sw-blog-category.list.columnName',
                 inlineEdit: 'string',
                 primary: true,
-            }, {
-                property: 'link',
-                label: 'sw-blog-category.list.columnLink',
-                inlineEdit: 'string',
             }];
         },
 

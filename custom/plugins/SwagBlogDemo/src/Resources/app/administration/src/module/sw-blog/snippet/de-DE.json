@@ -10,7 +10,12 @@
             "textTotalManufacturer": "Kein Blog | Ein Blog  | {count} bloggen",
             "buttonAddManufacturer": "Blog hinzufügen",
             "columnName": "Bloggen",
-            "columnLink": "Webseite"
+            "columnDescription": "Beschreibung",
+            "columnActive": "Aktiv",
+            "columnReleaseDate":"Veröffentlichungsdatum",
+            "columnAuthor": "",
+            "columnProduct": "",
+            "columnCategory": ""
         },
         "detail": {
             "textHeadline": "Neuer Blog",

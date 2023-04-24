@@ -61,9 +61,16 @@ Component.register('sw-blog-category-detail', {
         blogCategoryRepository() {
             return this.repositoryFactory.create('swag_blog_category');
         },
+        // mediaRepository() {
+        //     return this.repositoryFactory.create('media');
+        // },
+        // mediaUploadTag() {
+        //     return `sw-blog_category-detail--${this.blogCategory.id}`;
+        // },
+
 
         tooltipSave() {
-            if (this.acl.can('swag_blog_category.editor')) {
+            if (this.acl.can('blog_category.editor')) {
                 const systemKey = this.$device.getSystemKey();
 
                 return {
@@ -75,7 +82,7 @@ Component.register('sw-blog-category-detail', {
             return {
                 showDelay: 300,
                 message: this.$tc('sw-privileges.tooltip.warning'),
-                disabled: this.acl.can('order.editor'),
+                disabled: this.acl.can('blog_category.editor'),
                 showOnDisabledElements: true,
             };
         },
@@ -113,7 +120,7 @@ Component.register('sw-blog-category-detail', {
             }
 
             Shopware.State.commit('context/resetLanguageToDefault');
-            this.manufacturer = this.blogCategoryRepository.create();
+            this.blogCategory = this.blogCategoryRepository.create();
         },
 
         async loadEntityData() {
@@ -121,18 +128,14 @@ Component.register('sw-blog-category-detail', {
 
             const [blogCategoryResponse, customFieldResponse] = await Promise.allSettled([
                 this.blogCategoryRepository.get(this.blogCategoryId),
-                this.customFieldSetRepository.search(this.customFieldSetCriteria),
             ]);
 
             if (blogCategoryResponse.status === 'fulfilled') {
-                this.manufacturer = blogCategoryResponse.value;
+                this.blogCategory = blogCategoryResponse.value;
             }
+            console.log(this.blogCategory)
 
-            if (customFieldResponse.status === 'fulfilled') {
-                this.customFieldSets = customFieldResponse.value;
-            }
-
-            if (blogCategoryResponse.status === 'rejected' || customFieldResponse.status === 'rejected') {
+            if (blogCategoryResponse.status === 'rejected') {
                 this.createNotificationError({
                     message: this.$tc(
                         'global.notification.notificationLoadingDataErrorMessage',
@@ -154,9 +157,29 @@ Component.register('sw-blog-category-detail', {
         onChangeLanguage() {
             this.loadEntityData();
         },
+        // setMediaItem({ targetId }) {
+        //     this.blogCategory.mediaId = targetId;
+        // },
+        //
+        // setMediaFromSidebar(media) {
+        //     this.blogCategory.mediaId = media.id;
+        // },
+        //
+        // onUnlinkLogo() {
+        //     this.blogCategory.mediaId = null;
+        // },
+        //
+        // openMediaSidebar() {
+        //     this.$refs.mediaSidebarItem.openContent();
+        // },
+        //
+        // onDropMedia(dragData) {
+        //     this.setMediaItem({ targetId: dragData.id });
+        // },
+
 
         onSave() {
-            if (!this.acl.can('swag_blog_category.editor')) {
+            if (!this.acl.can('blog_category.editor')) {
                 return;
             }
 

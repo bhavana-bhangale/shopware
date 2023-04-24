@@ -36,7 +36,7 @@ Component.register('sw-blog-list', {
 
     computed: {
         blogRepository() {
-            return this.repositoryFactory.create('swag_blog');
+            return this.repositoryFactory.create('swag_blog_demo');
         },
 
         blogColumns() {
@@ -49,10 +49,30 @@ Component.register('sw-blog-list', {
                 inlineEdit: 'string',
                 primary: true,
             }, {
-                property: 'link',
-                label: 'sw-blog.list.columnLink',
+                property: 'description',
+                label: 'sw-blog.list.columnDescription',
+                allowResize: true,
+            }, {
+                property: 'active',
+                label: 'sw-blog.list.columnActive',
+                inlineEdit: 'boolean',
+                allowResize: true,
+            }, {
+                property: 'releaseDate',
+                label:"sw-blog.list.columnReleaseDate",
+                dateType: 'datetime-local',
+                fromFieldLabel: null,
+                toFieldLabel: null,
+                showTimeframe: true,
+            }, {
+                property: 'author',
+                label:"sw-blog.list.columnAuthor",
+                routerLink: 'sw.blog.detail',
                 inlineEdit: 'string',
-            }];
+                primary: true,
+
+            },
+            ];
         },
 
         blogCriteria() {

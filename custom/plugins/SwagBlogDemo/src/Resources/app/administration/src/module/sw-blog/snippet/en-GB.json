@@ -10,7 +10,12 @@
             "textTotalManufacturer": "No blog | One blog  | {count} blog",
             "buttonAddManufacturer": "Add Blog",
             "columnName": "Blog",
-            "columnLink": "Website"
+            "columnDescription": "Description",
+            "columnActive": "Active",
+            "columnReleaseDate": "Release Date",
+            "columnAuthor": "Author",
+            "columnCategory": "Category",
+            "columnProduct": "Product"
         },
         "detail": {
             "textHeadline": "New blog",
@@ -28,6 +33,7 @@
             "labelLogo": "Logo",
             "labelUseAsLogo": "Use as Logo"
         }
+
     },
     "sw-privileges": {
         "permissions": {
