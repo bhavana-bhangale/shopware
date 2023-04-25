@@ -8,12 +8,12 @@ import './preview';
  */
 Shopware.Service('cmsService').registerCmsElement({
     name: 'custom-text',
-    label: 'sw-cms.elements.text.label',
+    label: 'sw-cms-custom.elements.custom-text.config.label.content',
     component: 'sw-cms-el-custom-text',
     configComponent: 'sw-cms-el-config-custom-text',
     previewComponent: 'sw-cms-el-preview-custom-text',
     defaultConfig: {
-        content: {
+        customText: {
             source: 'static',
             value: `
                 <h2>Lorem Ipsum dolor sit amet</h2>

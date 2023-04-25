@@ -7,7 +7,7 @@ import './preview';
  */
 Shopware.Service('cmsService').registerCmsBlock({
     name: 'custom-text',
-    label: 'sw-cms.blocks.custom-text.text.label',
+    label: 'sw-cms-custom.blocks.custom-text.text.label',
     category: 'text',
     component: 'sw-cms-block-custom-text',
     previewComponent: 'sw-cms-preview-custom-text',
@@ -19,6 +19,6 @@ Shopware.Service('cmsService').registerCmsBlock({
         sizingMode: 'boxed',
     },
     slots: {
-        content: 'custom-text',
+        customText: 'custom-text',
     },
 });

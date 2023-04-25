@@ -1,0 +1,46 @@
+{
+    "sw-cms-custom": {
+        "blocks": {
+            "custom-text": {
+                "text": {
+                    "label": "Custom Block"
+                }
+            }
+        },
+        "elements": {
+            "general": {
+                "config": {
+                    "tab": {
+                        "content": "Content",
+                        "settings": "Settings"
+                    },
+                    "label": {
+                        "verticalAlign": "Vertical Align",
+                        "verticalAlignTop": "Vertical Align Top",
+                        "verticalAlignCenter": "Vertical Align Center",
+                        "verticalAlignBottom": "Vertical Align Bottom"
+                    }
+                },
+                "custom-text": {
+                    "label": "Custom Element"
+                }
+            },
+            "custom-text": {
+                "config": {
+                    "label": {
+                        "content": "Custom Text"
+                    }
+                }
+            }
+
+        },
+        "component": {
+            "componentContent": "Custom Component"
+        },
+        "customCategory": {
+            "option": {
+                "label": "Custom Text"
+            }
+        }
+    }
+}

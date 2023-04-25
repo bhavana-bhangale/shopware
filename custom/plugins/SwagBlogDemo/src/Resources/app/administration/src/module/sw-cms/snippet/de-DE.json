@@ -1,0 +1,24 @@
+{
+    "sw-cms-custom": {
+        "blocks": {
+            "custom-text": {
+                "text": {
+                    "label": "Custom Block"
+                }
+            }
+        },
+        "elements": {
+            "custom-text": {
+                "label": "Custom Element"
+            }
+        },
+        "component": {
+            "componentContent": "Custom Component"
+        },
+        "customCategory": {
+            "option": {
+                "label": "Custom Text"
+            }
+        }
+    }
+}

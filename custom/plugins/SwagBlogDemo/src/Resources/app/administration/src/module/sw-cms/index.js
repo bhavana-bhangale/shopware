@@ -1,2 +1,3 @@
-// import './blocks';
-// import './elements';
+import './blocks/custom-text';
+import './element/custom-text';
+
