@@ -3,21 +3,43 @@
         "blocks": {
             "custom-text": {
                 "text": {
-                    "label": "Custom Block"
+                    "label": "Benutzerdefinierter Block"
                 }
             }
         },
         "elements": {
+            "general": {
+                "config": {
+                    "tab": {
+                        "content": "Inhalt",
+                        "settings": "Einstellungen"
+                    },
+                    "label": {
+                        "verticalAlign": "Vertikal ausrichten",
+                        "verticalAlignTop": "Oben vertikal ausrichten",
+                        "verticalAlignCenter": "Vertikales Ausrichtungszentrum",
+                        "verticalAlignBottom": "Vertikal unten ausrichten"
+                    }
+                },
+                "custom-text": {
+                    "label": "Benutzerdefiniertes Element"
+                }
+            },
             "custom-text": {
-                "label": "Custom Element"
+                "config": {
+                    "label": {
+                        "content": "Benutzerdefinierter Text"
+                    }
+                }
             }
+
         },
         "component": {
-            "componentContent": "Custom Component"
+            "componentContent": "Benutzerdefinierte Komponente"
         },
         "customCategory": {
             "option": {
-                "label": "Custom Text"
+                "label": "Benutzerdefinierter Text"
             }
         }
     }

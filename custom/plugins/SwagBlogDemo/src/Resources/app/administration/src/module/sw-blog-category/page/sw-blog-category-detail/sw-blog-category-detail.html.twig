@@ -103,42 +103,9 @@
 
                                 </div>
 
-                                <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
-{#                                {% block sw_blog_category_detail_logo_upload %}#}
-{#                                    <sw-upload-listener#}
-{#                                        :upload-tag="mediaUploadTag"#}
-{#                                        auto-upload#}
-{#                                        @media-upload-finish="setMediaItem"#}
-{#                                    />#}
-{#                                    <sw-media-upload-v2#}
-{#                                        class="sw-blog-category-detail__logo-upload"#}
-{#                                        :source="blogCategory.mediaId"#}
-{#                                        :allow-multi-select="false"#}
-{#                                        variant="regular"#}
-{#                                        :upload-tag="mediaUploadTag"#}
-{#                                        :label="$tc('sw-blog-category.detail.labelLogo')"#}
-{#                                        :default-folder="blogCategoryRepository.entityName"#}
-{#                                        :disabled="!acl.can('blog_category.editor')"#}
-{#                                        @sw-media-upload-v2-media-upload-success="setMediaItem"#}
-{#                                        @media-drop="onDropMedia"#}
-{#                                        @media-upload-sidebar-open="openMediaSidebar"#}
-{#                                        @media-upload-remove-image="onUnlinkLogo"#}
-{#                                    />#}
-{#                                {% endblock %}#}
+
                             </sw-container>
 
-                            <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
-{#                            {% block sw_blog_category_detail_base_info_field_description %}#}
-{#                                <sw-text-editor#}
-{#                                    v-model="blogCategory.description"#}
-{#                                    :label="$tc('sw-blog-category.detail.labelDescription')"#}
-{#                                    :placeholder="placeholder(blogCategory, 'description', $tc('sw-blog-category.detail.placeholderDescription'))"#}
-{#                                    name="description"#}
-{#                                    sanitize-input#}
-{#                                    sanitize-field-name="blog_category_translation.description"#}
-{#                                    :disabled="!acl.can('blog_category.editor')"#}
-{#                                />#}
-{#                            {% endblock %}#}
                         </sw-card>
                     {% endblock %}
 
@@ -162,26 +129,6 @@
             </sw-card-view>
         {% endblock %}
 
-        <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
-{#        {% block sw_blog_category_detail_sidebar %}#}
-{#            <template slot="sidebar">#}
-{#                <sw-sidebar :propagate-width="true">#}
-{#                    <sw-sidebar-media-item#}
-{#                        ref="mediaSidebarItem"#}
-{#                        :disabled="!acl.can('blog_category.editor')"#}
-{#                    >#}
-{#                        <template#}
-{#                            slot="context-menu-items"#}
-{#                            slot-scope="media"#}
-{#                        >#}
-{#                            <sw-context-menu-item @click="setMediaFromSidebar(media.mediaItem)">#}
-{#                                {{ $tc('sw-blog-category.detail.labelUseAsLogo') }}#}
-{#                            </sw-context-menu-item>#}
-{#                        </template>#}
-{#                    </sw-sidebar-media-item>#}
-{#                </sw-sidebar>#}
-{#            </template>#}
-{#        {% endblock %}#}
 
     </sw-page>
 {% endblock %}

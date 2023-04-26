@@ -26,7 +26,8 @@
             "placeholderLink": "Enter blog category website...",
             "messageSaveSuccess": "Blog Category \"{name}\" has been saved.",
             "labelLogo": "Logo",
-            "labelUseAsLogo": "Use as Logo"
+            "labelUseAsLogo": "Use as Logo",
+            "cardTitleblogCategoryInfo": "Blog Category Information"
         }
     },
     "sw-privileges": {

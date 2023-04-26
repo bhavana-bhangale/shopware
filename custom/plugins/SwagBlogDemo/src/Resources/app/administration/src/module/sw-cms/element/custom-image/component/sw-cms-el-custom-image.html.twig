@@ -1,0 +1,17 @@
+{% block sw_cms_element_custom_image %}
+    <div
+        class="sw-cms-el-custom-image"
+        :class="displayModeClass"
+{#        :style="styles"#}
+    >
+
+        {% block sw_cms_element_custom_image_content %}
+            <img
+                :src="mediaUrl"
+                style="width:100%;"
+{#                :style="imgStyles"#}
+                alt=""
+            >
+        {% endblock %}
+    </div>
+{% endblock %}

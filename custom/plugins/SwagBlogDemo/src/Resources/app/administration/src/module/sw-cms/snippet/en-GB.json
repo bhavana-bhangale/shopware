@@ -42,5 +42,23 @@
                 "label": "Custom Text"
             }
         }
+    },
+    "sw-cms-custom-text-image": {
+        "blocks": {
+            "custom-text-image": {
+                "text": {
+                    "label": "Custom Block Text Image"
+                }
+            }
+        }
+    },
+    "sw-cms-custom-image": {
+        "blocks": {
+            "custom-image": {
+                "image": {
+                    "label": "Custom Image"
+                }
+            }
+        }
     }
 }
