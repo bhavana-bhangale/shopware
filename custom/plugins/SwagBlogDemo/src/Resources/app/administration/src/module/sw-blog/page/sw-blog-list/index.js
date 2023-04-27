@@ -71,7 +71,12 @@ Component.register('sw-blog-list', {
                 inlineEdit: 'string',
                 primary: true,
 
-            },
+            },{
+                property:'category',
+                label:"sw-blog.list.columnCategory",
+                routerLink: "sw.blog.detail",
+
+            }
             ];
         },
 

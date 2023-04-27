@@ -56,9 +56,92 @@
         "blocks": {
             "custom-image": {
                 "image": {
-                    "label": "Custom Image"
+                    "label": "Custom Image Block"
+                }
+            }
+        },
+        "elements": {
+            "image": {
+                "label": "Custom Image Element",
+                "config": {
+                    "label": {
+                        "linkNewTab": "Link new tab"
+                    }
+                }
+            },
+            "general": {
+                "config": {
+                    "label": {
+                        "displayModeStandard":"Standard",
+                        "displayModeCover": "Cover",
+                        "displayModeStretch": "Stretch",
+                        "displayModeContain": "Contain",
+                        "verticalAlign": "Vertical align",
+                        "verticalAlignTop": "Top",
+                        "verticalAlignCenter": "Center",
+                        "verticalAlignBottom": "Bottom",
+                        "displayMode": "Display mode"
+                    }
                 }
             }
         }
+    },
+    "sw-cms-custom-product-slider": {
+        "blocks": {
+            "commerce": {
+                "productSlider": {
+                    "label": "Custom Product Slider"
+                }
+
+            }
+        },
+        "elements": {
+            "general": {
+                "config": {
+                    "tab": {
+                        "content": "Content",
+                        "settings": "Setting"
+
+                    },
+                    "label": {
+                        "displayMode":"Standard",
+                        "displayModeCover": "Cover",
+                        "displayModeContain": "Contain",
+                        "displayModeStandard": "Standard",
+                        "verticalAlign": "Vertical Align",
+                        "verticalAlignTop": "Vertical Align Top",
+                        "verticalAlignCenter": "Vertical Align Center",
+                        "verticalAlignBottom": "Vertical Align Bottom",
+                        "layoutType": "Type",
+                        "layoutTypeStandard": "Standard",
+                        "layoutTypeImage": "Image",
+                        "layoutTypeMinimal": "Minimal"
+                    }
+                }
+            },
+            "productSlider": {
+                "config": {
+                    "label": {
+                        "title": "Slider Title",
+                        "productAssignmentType": "Product Assignment",
+                        "selection": "Product",
+                        "navigation": "Navigation",
+                        "rotate": "Rotate",
+                        "border": "Border",
+                        "minWidth": "Minimal width"
+                    },
+                    "placeholder": {
+                        "title":"Enter Slider Title",
+                        "selection": "Select products"
+                    },
+                    "productAssignmentTypeOptions": {
+                        "manual": "Manual assignment",
+                        "productStream": "Dynamic product group"
+                    }
+                }
+            }
+
+        }
+
     }
 }

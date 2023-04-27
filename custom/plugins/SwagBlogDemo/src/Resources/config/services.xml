@@ -46,5 +46,19 @@
         </service>
         <!--End ProductBlogMapping Definition-->
 
+        <service id="SwagBlogDemo\Core\Content\media\cms\ImageCmsElementResolver">
+            <tag name="shopware.cms.data_resolver" />
+            <argument type="service" id="Shopware\Core\Content\Media\Cms\DefaultMediaResolver"/>
+        </service>
+
+
+        <service id="SwagBlogDemo\Core\Content\product\cms\ProductSliderCmsElementResolver">
+            <argument type="service" id="Shopware\Core\Content\ProductStream\Service\ProductStreamBuilder"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+
+
     </services>
 </container>

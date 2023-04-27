@@ -33,7 +33,9 @@
             "placeholderReleaseDate": "Enter blog release date...",
             "messageSaveSuccess": "Blog \"{name}\" has been saved.",
             "labelLogo": "Logo",
-            "labelUseAsLogo": "Use as Logo"
+            "labelUseAsLogo": "Use as Logo",
+            "labelActive": "Active",
+            "labelCategory": "Category"
         }
 
     },

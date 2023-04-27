@@ -143,6 +143,29 @@
                                     :disabled="!acl.can('blog.editor')"
                                 />
                             {% endblock %}
+
+                            {% block sw_blog_detail_base_content_field_active %}
+                                <sw-field
+                                    v-model="blog.active"
+                                    type="switch"
+                                    bordered
+                                    :disabled="!acl.can('blog.editor')"
+                                    :label="$tc('sw-blog.detail.labelActive')"
+                                />
+                            {% endblock %}
+
+                            {% block sw_blog_deatil_content_type_category_detail %}
+                                <sw-entity-single-select
+                                    v-else-if=""
+                                    v-model="blog.swagBlogCategoryId"
+                                    class="sw-blog-detail__category-single-select"
+                                    entity="swag_blog_category"
+                                    :criteria="blogCriteria"
+                                    :label="$tc('sw-blog.detail.labelCategory')"
+                                    :disabled="!acl.can('blog.editor')"
+                                    show-clearable-button
+                                />
+                            {% endblock %}
                         </sw-card>
                     {% endblock %}
 
