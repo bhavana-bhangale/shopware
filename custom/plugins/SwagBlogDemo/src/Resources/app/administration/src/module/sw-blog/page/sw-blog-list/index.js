@@ -72,11 +72,18 @@ Component.register('sw-blog-list', {
                 primary: true,
 
             },{
-                property:'category',
+                property:'swagBlogCategory.name',
                 label:"sw-blog.list.columnCategory",
+                routerLink: "sw.blog.detail",
+                displayPath: true,
+
+            },{
+                property: 'products',
+                label:"sw-blog.list.columnProduct",
                 routerLink: "sw.blog.detail",
 
             }
+
             ];
         },
 
@@ -84,6 +91,7 @@ Component.register('sw-blog-list', {
             const blogCriteria = new Criteria(this.page, this.limit);
 
             blogCriteria.setTerm(this.term);
+            blogCriteria.addAssociation('swagBlogCategory');
             blogCriteria.addSorting(Criteria.sort(this.sortBy, this.sortDirection, this.naturalSorting));
 
             return blogCriteria;
@@ -113,6 +121,7 @@ Component.register('sw-blog-list', {
 
             return this.blogRepository.search(criteria)
                 .then(searchResult => {
+                    // console.log(searchResult);
                     this.blog = searchResult;
                     this.total = searchResult.total;
                     this.isLoading = false;

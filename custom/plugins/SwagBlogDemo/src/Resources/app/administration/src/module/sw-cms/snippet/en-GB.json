@@ -115,7 +115,8 @@
                         "layoutType": "Type",
                         "layoutTypeStandard": "Standard",
                         "layoutTypeImage": "Image",
-                        "layoutTypeMinimal": "Minimal"
+                        "layoutTypeMinimal": "Minimal",
+                        "label": "Custom Product Slider"
                     }
                 }
             },
@@ -128,7 +129,8 @@
                         "navigation": "Navigation",
                         "rotate": "Rotate",
                         "border": "Border",
-                        "minWidth": "Minimal width"
+                        "minWidth": "Minimal width",
+                        "label": "Custom product Slider"
                     },
                     "placeholder": {
                         "title":"Enter Slider Title",
@@ -138,9 +140,18 @@
                         "manual": "Manual assignment",
                         "productStream": "Dynamic product group"
                     }
-                }
+                },
+                "label": "Custom Product Slider"
             }
 
+        }
+
+    },
+    "sw-cms-custom-image-text-blog": {
+        "blocks": {
+            "textImage": {
+                "label": "Custom Image Text Blog"
+            }
         }
 
     }

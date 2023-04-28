@@ -1,0 +1,50 @@
+{% block block_custom_image_text_blog %}
+{#    {{ dump(block.slots) }}#}
+    {% set columns = 4 %}
+    {# @deprecated tag:v6.5.0 - Use "element.id" directly instead. #}
+    {% set id = element.id %}
+{#    <div class="row">#}
+{#        <div class="col-12">#}
+            {% block block_custom_image_text_blog_first %}
+                {% set element = block.slots.getSlot('first') %}
+
+                <div class="col-md-6" data-cms-element-id="{{ element.id }}">
+                    {% block block_custom_image_text_blog_first_inner %}
+                        {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+
+            {% block block_custom_image_text_blog_second %}
+                {% set element = block.slots.getSlot('second') %}
+
+                <div class="col-md-6 custom-class" data-cms-element-id="{{ element.id }}">
+                    {% block block_custom_image_text_blog_second_inner %}
+                        {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+{#        </div>#}
+{#        <div class="col-12">#}
+            {% block block_custom_image_text_blog_third %}
+                {% set element = block.slots.getSlot('third') %}
+
+                <div class="col-md-6 custom-third" data-cms-element-id="{{ element.id }}">
+                    {% block block_custom_image_text_blog_third_inner %}
+                        {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+
+            {% block block_custom_image_text_blog_four %}
+                {% set element = block.slots.getSlot('four') %}
+
+                <div class="col-md-6" data-cms-element-id="{{ element.id }}">
+                    {% block block_custom_image_text_blog_four_inner %}
+                        {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+{#        </div>#}
+    </div>
+{% endblock %}

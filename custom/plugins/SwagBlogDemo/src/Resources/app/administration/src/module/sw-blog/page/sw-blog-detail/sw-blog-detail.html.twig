@@ -164,6 +164,20 @@
                                     :label="$tc('sw-blog.detail.labelCategory')"
                                     :disabled="!acl.can('blog.editor')"
                                     show-clearable-button
+                                    validation="required"
+                                    :error="brandsManufacturerIdError"
+                                    required
+                                />
+                            {% endblock %}
+
+                            {% block sw_blog_detail_content_products %}
+                                <sw-entity-multi-select
+                                    v-if="!isEmpty"
+                                    size="medium"
+                                    entity="product"
+                                    :entity-collection="billingProducts"
+                                    :disabled="disabled"
+                                    @change="setProductIds"
                                 />
                             {% endblock %}
                         </sw-card>

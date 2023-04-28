@@ -1,10 +1,7 @@
-/*
- * @package inventory
- */
-
 import template from './sw-blog-detail.html.twig';
-// import './sw-blog-detail.scss';
+const { EntityCollection, Criteria } = Shopware.Data;
 
+// import './sw-blog-detail.scss';
 const { Component, Mixin, Data: { Criteria } } = Shopware;
 
 const { mapPropertyErrors } = Shopware.Component.getComponentHelper();
@@ -41,6 +38,8 @@ Component.register('sw-blog-detail', {
             customFieldSets: [],
             isLoading: false,
             isSaveSuccessful: false,
+            billingProducts: null,
+            inputKey: 'productIds',
         };
     },
 
@@ -53,6 +52,14 @@ Component.register('sw-blog-detail', {
     computed: {
         identifier() {
             return this.placeholder(this.blog, 'name');
+        },
+        productIds: {
+            get() {
+                return this.blog.productIds || [];
+            },
+            set(productIds) {
+                this.blog.value = { ...this.blog.products, productIds };
+            },
         },
 
         blogIsLoading() {
@@ -124,12 +131,16 @@ Component.register('sw-blog-detail', {
 
     methods: {
         createdComponent() {
+            this.billingProducts = new EntityCollection(
+                this.productRepository.route,
+                this.productRepository.entityName,
+            );
             Shopware.ExtensionAPI.publishData({
                 id: 'sw-blog-detail__blog',
                 path: 'blog',
                 scope: this,
             });
-            if (this.manufacturerId) {
+            if (this.blogId) {
                 this.loadEntityData();
                 return;
             }
@@ -226,6 +237,12 @@ Component.register('sw-blog-detail', {
 
         onCancel() {
             this.$router.push({ name: 'sw.blog.index' });
+        },
+        setProductIds(products) {
+            this.productIds = products.getIds();
+            this.billingProducts = products;
+            this.blog.products = products;
+
         },
     },
 });

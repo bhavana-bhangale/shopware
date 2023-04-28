@@ -6,3 +6,4 @@ import './blocks/custom-image';
 import './element/custom-image';
 import './blocks/custom-product-slider';
 import './element/custom-product-slider';
+import './blocks/custom-image-text-blog';

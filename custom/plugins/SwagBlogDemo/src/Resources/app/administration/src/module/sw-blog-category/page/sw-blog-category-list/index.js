@@ -55,6 +55,7 @@ Component.register('sw-blog-category-list', {
             const blogCategoryCriteria = new Criteria(this.page, this.limit);
 
             blogCategoryCriteria.setTerm(this.term);
+            // blogCategoryCriteria.addAssociation(this.blogCategoryColumns());
             blogCategoryCriteria.addSorting(Criteria.sort(this.sortBy, this.sortDirection, this.naturalSorting));
 
             return blogCategoryCriteria;

@@ -1,0 +1,19 @@
+{% block sw_cms_block_custom_image_text_blog %}
+    <div class="sw-cms-block-custom-image-text-blog">
+        <div class="sw-cms-block-custom-image-text-blog__image-left">
+            <slot name="first"></slot>
+        </div>
+
+        <div class="sw-cms-block-custom-image-text-blog__text">
+            <slot name="second"></slot>
+        </div>
+
+        <div class="sw-cms-block-custom-image-text-blog__text">
+            <slot name="third"></slot>
+        </div>
+
+        <div class="sw-cms-block-custom-image-text-blog__image-right">
+            <slot name="four"></slot>
+        </div>
+    </div>
+{% endblock %}

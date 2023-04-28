@@ -20,7 +20,7 @@ Shopware.Service('cmsService').registerCmsBlock({
         sizingMode: 'boxed',
     },
     slots: {
-        left: {
+        customImage: {
             type: 'image',
             default: {
                 config: {
@@ -34,6 +34,6 @@ Shopware.Service('cmsService').registerCmsBlock({
                 },
             },
         },
-        right: 'custom-text',
+        customText: 'custom-text',
     },
 });
