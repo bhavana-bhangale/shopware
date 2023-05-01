@@ -1,0 +1,64 @@
+{
+    "sw-cms-top-selling-product-slider": {
+        "blocks": {
+            "commerce": {
+                "topSellingProductSlider": {
+                    "label": "Top Selling Product Slider"
+                }
+
+            }
+        },
+        "elements": {
+            "general": {
+                "config": {
+                    "tab": {
+                        "content": "Content",
+                        "settings": "Setting"
+
+                    },
+                    "label": {
+                        "displayMode":"Standard",
+                        "displayModeCover": "Cover",
+                        "displayModeContain": "Contain",
+                        "displayModeStandard": "Standard",
+                        "verticalAlign": "Vertical Align",
+                        "verticalAlignTop": "Vertical Align Top",
+                        "verticalAlignCenter": "Vertical Align Center",
+                        "verticalAlignBottom": "Vertical Align Bottom",
+                        "layoutType": "Type",
+                        "layoutTypeStandard": "Standard",
+                        "layoutTypeImage": "Image",
+                        "layoutTypeMinimal": "Minimal",
+                        "label": "Top Selling Product Slider"
+                    }
+                }
+            },
+            "topSellingProductSlider": {
+                "config": {
+                    "label": {
+                        "title": "Top Selling Slider Title",
+                        "productAssignmentType": "Product Assignment",
+                        "selection": "Product",
+                        "navigation": "Navigation",
+                        "rotate": "Rotate",
+                        "border": "Border",
+                        "minWidth": "Minimal width",
+                        "label": "Custom product Slider"
+                    },
+                    "placeholder": {
+                        "title":"Enter Slider Title",
+                        "selection": "Select products"
+                    },
+                    "productAssignmentTypeOptions": {
+                        "manual": "Manual assignment",
+                        "productStream": "Dynamic product group"
+                    }
+                },
+                "label": "Custom Product Slider"
+            }
+
+        }
+
+    }
+
+}

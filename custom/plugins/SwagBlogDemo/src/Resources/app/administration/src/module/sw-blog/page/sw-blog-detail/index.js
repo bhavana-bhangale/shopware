@@ -2,7 +2,7 @@ import template from './sw-blog-detail.html.twig';
 const { EntityCollection, Criteria } = Shopware.Data;
 
 // import './sw-blog-detail.scss';
-const { Component, Mixin, Data: { Criteria } } = Shopware;
+const { Component, Mixin } = Shopware;
 
 const { mapPropertyErrors } = Shopware.Component.getComponentHelper();
 
