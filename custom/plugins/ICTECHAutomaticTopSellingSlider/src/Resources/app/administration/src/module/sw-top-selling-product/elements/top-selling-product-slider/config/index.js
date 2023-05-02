@@ -33,6 +33,9 @@ Component.register('sw-cms-el-config-top-selling-product-slider', {
         productRepository() {
             return this.repositoryFactory.create('product');
         },
+        categoryRepository() {
+            return this.repositoryFactory.create('category');
+        },
 
         productStreamRepository() {
             return this.repositoryFactory.create('product_stream');
@@ -73,28 +76,29 @@ Component.register('sw-cms-el-config-top-selling-product-slider', {
 
         productStreamSortingOptions() {
             return [{
-                label: this.$tc('sw-cms-top-selling-product-slider.elements.productSlider.config.productStreamSortingOptions.nameAsc'),
+                label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productStreamSortingOptions.nameAsc'),
                 value: 'name:ASC',
             }, {
-                label: this.$tc('sw-cms-top-selling-product-slider.elements.productSlider.config.productStreamSortingOptions.nameDesc'),
+                label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productStreamSortingOptions.nameDesc'),
                 value: 'name:DESC',
             }, {
-                label: this.$tc('sw-cms-top-selling-product-slider.elements.productSlider.config.productStreamSortingOptions.creationDateAsc'),
+                label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productStreamSortingOptions.creationDateAsc'),
                 value: 'createdAt:ASC',
             }, {
-                label: this.$tc('sw-cms-top-selling-product-slider.elements.productSlider.config.productStreamSortingOptions.creationDateDesc'),
+                label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productStreamSortingOptions.creationDateDesc'),
                 value: 'createdAt:DESC',
             }, {
-                label: this.$tc('sw-cms-top-selling-product-slider.elements.productSlider.config.productStreamSortingOptions.random'),
+                label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productStreamSortingOptions.random'),
                 value: 'random',
             }, {
-                label: this.$tc('sw-cms-top-selling-product-slider.elements.productSlider.config.productStreamSortingOptions.priceAsc'),
+                label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productStreamSortingOptions.priceAsc'),
                 value: 'cheapestPrice:ASC',
             }, {
-                label: this.$tc('sw-cms-top-selling-product-slider.elements.productSlider.config.productStreamSortingOptions.priceDesc'),
+                label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productStreamSortingOptions.priceDesc'),
                 value: 'cheapestPrice:DESC',
             }];
         },
+
 
         productStreamCriteria() {
             const criteria = new Criteria(1, 10);
@@ -108,6 +112,11 @@ Component.register('sw-cms-el-config-top-selling-product-slider', {
             const direction = sorting.split(':')[1];
 
             criteria.addSorting(Criteria.sort(field, direction, false));
+
+            return criteria;
+        },
+        categoryCriteria() {
+            const criteria = new Criteria(1, null);
 
             return criteria;
         },

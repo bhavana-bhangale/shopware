@@ -41,6 +41,34 @@
                             class="sw-cms-el-config-top-selling-product-slider__tab-content"
                         >
 
+                            <sw-cms-mapping-field
+                                v-model="element.config.content"
+                                :label="$tc('sw-cms.elements.text.config.label.content')"
+                                value-types="entity"
+                                entity="category"
+                            >
+{#                                <sw-entity-single-select#}
+{#                                    v-model="category.categoryId"#}
+{#                                    class="sw-category-detail__category-single-select"#}
+{#                                    entity="category"#}
+{#                                    :criteria="categoryCriteria"#}
+{#                                    :label="$tc('sw-category.detail.labelCategory')"#}
+
+{#                                    show-clearable-button#}
+{#                                    validation="required"#}
+{#                                    :error="brandsManufacturerIdError"#}
+{#                                    required#}
+{#                                />#}
+                                <div
+                                    slot="preview"
+                                    slot-scope="{ demoValue }"
+                                    class="sw-cms-el-config-top-selling-product-slider__mapping-preview"
+                                >
+                                    <div v-html="$sanitize(demoValue)"></div>
+                                </div>
+                            </sw-cms-mapping-field>
+
+
                             {% block sw_cms_element_top_selling_product_slider_config_content_title %}
                                 <sw-field
                                     v-model="element.config.title.value"
@@ -51,16 +79,16 @@
                             {% endblock %}
 
 
-                            {% block sw_cms_element_top_selling_product_slider_config_content_product_assignment_type %}
-                                <sw-single-select
-                                    v-model="element.config.products.source"
-                                    class="sw-cms-el-config-top-selling-product-slider__product-assignment-type-select"
-                                    :label="$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.label.productAssignmentType')"
-                                    :options="productAssignmentTypes"
-                                    show-clearable-button
-                                    @change="onChangeAssignmentType"
-                                />
-                            {% endblock %}
+{#                            {% block sw_cms_element_top_selling_product_slider_config_content_product_assignment_type %}#}
+{#                                <sw-single-select#}
+{#                                    v-model="element.config.products.source"#}
+{#                                    class="sw-cms-el-config-top-selling-product-slider__product-assignment-type-select"#}
+{#                                    :label="$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.label.productAssignmentType')"#}
+{#                                    :options="productAssignmentTypes"#}
+{#                                    show-clearable-button#}
+{#                                    @change="onChangeAssignmentType"#}
+{#                                />#}
+{#                            {% endblock %}#}
 
                             <template v-if="element.config.products.source === 'product_stream'">
 
@@ -82,7 +110,7 @@
                                         class="sw-cms-el-config-top-selling-product-slider__product-stream-performance-hint"
                                         variant="info"
                                     >
-                                        {{ $tc('sw-cms-top-selling-product-slider.elements.productSlider.config.textProductStreamPerformanceHint') }}
+                                        {{ $tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.textProductStreamPerformanceHint') }}
                                     </sw-alert>
                                 {% endblock %}
 
@@ -170,8 +198,8 @@
                                     v-else
                                     v-model="productCollection"
                                     class="sw-cms-el-config-top-selling-product-slider__products"
-                                    :label="$tc('sw-cms-top-selling-product-slider.elements.productSlider.config.label.selection')"
-                                    :placeholder="$tc('sw-cms-top-selling-product-slider.elements.productSlider.config.placeholder.selection')"
+                                    :label="$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.label.selection')"
+                                    :placeholder="$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.placeholder.selection')"
                                     :context="productMultiSelectContext"
                                     :criteria="productMediaFilter"
                                     @change="onProductsChange"
@@ -278,7 +306,7 @@
                                     v-model="element.config.navigation.value"
                                     type="switch"
                                     bordered
-                                    :label="$tc('sw-cms-top-selling-product-slider.elements.productSlider.config.label.navigation')"
+                                    :label="$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.label.navigation')"
                                 />
                             {% endblock %}
 
@@ -288,7 +316,7 @@
                                     v-model="element.config.rotate.value"
                                     type="switch"
                                     bordered
-                                    :label="$tc('sw-cms-top-selling-product-slider.elements.productSlider.config.label.rotate')"
+                                    :label="$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.label.rotate')"
                                 />
                             {% endblock %}
 
@@ -298,7 +326,7 @@
                                     v-model="element.config.border.value"
                                     type="switch"
                                     bordered
-                                    :label="$tc('sw-cms-top-selling-product-slider.elements.productSlider.config.label.border')"
+                                    :label="$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.label.border')"
                                 />
                             {% endblock %}
 
@@ -307,8 +335,8 @@
                                 <sw-field
                                     v-model="element.config.elMinWidth.value"
                                     type="text"
-                                    :label="$tc('sw-cms-top-selling-product-slider.elements.productSlider.config.label.minWidth')"
-                                    :placeholder="$tc('sw-cms-top-selling-product-slider.elements.productSlider.config.placeholder.minWidth')"
+                                    :label="$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.label.minWidth')"
+                                    :placeholder="$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.placeholder.minWidth')"
                                 />
                             {% endblock %}
                         </sw-container>

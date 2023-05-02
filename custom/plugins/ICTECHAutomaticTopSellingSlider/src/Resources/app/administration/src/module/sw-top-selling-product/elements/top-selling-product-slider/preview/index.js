@@ -1,5 +1,5 @@
 import template from './sw-cms-el-preview-top-selling-product-slider.html.twig';
-// import './sw-cms-el-preview-top-selling-product-slider.scss';
+import './sw-cms-el-preview-top-selling-product-slider.scss';
 
 const { Component } = Shopware;
 

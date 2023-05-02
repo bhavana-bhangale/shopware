@@ -1,0 +1,36 @@
+{
+  "name": "ict/ictech-automatic-top-selling-product-slider",
+  "description": " Automatic Top selling Products Slider",
+  "type": "shopware-platform-plugin",
+    "version": "1.0.0",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "ICTECHAutomaticTopSellingSlider\\": "src/"
+    }
+  },
+    "authors": [
+        {
+            "name" : "iCreateivetechnologies"
+        }
+    ],
+  "extra": {
+    "shopware-plugin-class": "ICTECHAutomaticTopSellingSlider\\ICTECHAutomaticTopSellingSlider",
+    "label": {
+      "de-DE": "SmartSell-Funktion",
+      "en-GB": " SmartSell Feature"
+    },
+      "description": {
+          "de-DE": " Nach der Installation dieses Plugins kann der Administrator das Blockelement mit der Bestseller-Kategorie auf der Startseite und der relativen Bestseller-Kategorie auf der Seite Produkt-/Kategorieliste einfügen",
+          "en-GB": "After installing this plugin, the admin can insert the block element with the best seller category on the Home page and the best seller relative category on the Product/ Category Listing page "
+      },
+      "manufacturerLink": {
+          "de-DE": "https://www.icreativetechnologies.com",
+          "en-GB": "https://www.icreativetechnologies.com"
+      },
+      "supportLink": {
+          "de-DE": "https://support.icreativetechnologies.com/",
+          "en-GB": "https://support.icreativetechnologies.com/"
+      }
+  }
+}
