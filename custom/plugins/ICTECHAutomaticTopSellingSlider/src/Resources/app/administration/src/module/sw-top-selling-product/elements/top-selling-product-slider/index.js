@@ -58,6 +58,15 @@ Shopware.Service('cmsService').registerCmsElement({
             source: 'static',
             value: null,
         },
+        bestSellProductDay: {
+            source: 'static',
+            value: 'days',
+        },
+        bestSellProductMultiple: {
+            source: 'static',
+            value: 'multiple',
+        },
+
         productStreamSorting: {
             source: 'static',
             value: 'name:ASC',

@@ -25,10 +25,19 @@
                         "verticalAlignTop": "Vertical Align Top",
                         "verticalAlignCenter": "Vertical Align Center",
                         "verticalAlignBottom": "Vertical Align Bottom",
-                        "layoutType": "Type",
+                        "layoutType": "Layout Type",
                         "layoutTypeStandard": "Standard",
                         "layoutTypeImage": "Image",
                         "layoutTypeMinimal": "Minimal",
+                        "bestSellProductDay": "Best Selling Product",
+                        "displayBestSellSevenDays": "Last 7 Days",
+                        "displayBestSellThirtyDays": "Last 30 Days",
+                        "bestSellDaysSelection": "Days Selection",
+                        "bestSellProductMultiple": "Products Display",
+                        "bestSellMultipleSelection": "Multiple Selection",
+                        "displayBestSellThreeMultiple": "3",
+                        "displayBestSellSixMultiple": "6",
+                        "displayBestSellNineMultiple": "9",
                         "label": "Top Selling Product Slider"
                     }
                 }
@@ -36,7 +45,7 @@
             "topSellingProductSlider": {
                 "config": {
                     "label": {
-                        "title": "Top Selling Slider Title",
+                        "title": "Title",
                         "productAssignmentType": "Product Assignment",
                         "selection": "Product",
                         "navigation": "Navigation",

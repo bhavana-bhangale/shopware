@@ -20,8 +20,8 @@ Component.register('sw-cms-el-config-top-selling-product-slider', {
     data() {
         return {
             productCollection: null,
-            productStream: null,
-            showProductStreamPreview: false,
+            // productStream: null,
+            // showProductStreamPreview: false,
 
             // Temporary values to store the previous selection in case the user changes the assignment type.
             tempProductIds: [],
@@ -37,9 +37,9 @@ Component.register('sw-cms-el-config-top-selling-product-slider', {
             return this.repositoryFactory.create('category');
         },
 
-        productStreamRepository() {
-            return this.repositoryFactory.create('product_stream');
-        },
+        // productStreamRepository() {
+        //     return this.repositoryFactory.create('product_stream');
+        // },
 
         products() {
             if (this.element?.data?.products && this.element.data.products.length > 0) {
@@ -74,67 +74,67 @@ Component.register('sw-cms-el-config-top-selling-product-slider', {
             }];
         },
 
-        productStreamSortingOptions() {
-            return [{
-                label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productStreamSortingOptions.nameAsc'),
-                value: 'name:ASC',
-            }, {
-                label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productStreamSortingOptions.nameDesc'),
-                value: 'name:DESC',
-            }, {
-                label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productStreamSortingOptions.creationDateAsc'),
-                value: 'createdAt:ASC',
-            }, {
-                label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productStreamSortingOptions.creationDateDesc'),
-                value: 'createdAt:DESC',
-            }, {
-                label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productStreamSortingOptions.random'),
-                value: 'random',
-            }, {
-                label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productStreamSortingOptions.priceAsc'),
-                value: 'cheapestPrice:ASC',
-            }, {
-                label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productStreamSortingOptions.priceDesc'),
-                value: 'cheapestPrice:DESC',
-            }];
-        },
+        // productStreamSortingOptions() {
+        //     return [{
+        //         label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productStreamSortingOptions.nameAsc'),
+        //         value: 'name:ASC',
+        //     }, {
+        //         label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productStreamSortingOptions.nameDesc'),
+        //         value: 'name:DESC',
+        //     }, {
+        //         label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productStreamSortingOptions.creationDateAsc'),
+        //         value: 'createdAt:ASC',
+        //     }, {
+        //         label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productStreamSortingOptions.creationDateDesc'),
+        //         value: 'createdAt:DESC',
+        //     }, {
+        //         label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productStreamSortingOptions.random'),
+        //         value: 'random',
+        //     }, {
+        //         label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productStreamSortingOptions.priceAsc'),
+        //         value: 'cheapestPrice:ASC',
+        //     }, {
+        //         label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productStreamSortingOptions.priceDesc'),
+        //         value: 'cheapestPrice:DESC',
+        //     }];
+        // },
 
 
-        productStreamCriteria() {
-            const criteria = new Criteria(1, 10);
-            const sorting = this.element.config.productStreamSorting.value;
-
-            if (!sorting || sorting === 'random') {
-                return criteria;
-            }
-
-            const field = sorting.split(':')[0];
-            const direction = sorting.split(':')[1];
-
-            criteria.addSorting(Criteria.sort(field, direction, false));
-
-            return criteria;
-        },
+        // productStreamCriteria() {
+        //     const criteria = new Criteria(1, 10);
+        //     const sorting = this.element.config.productStreamSorting.value;
+        //
+        //     if (!sorting || sorting === 'random') {
+        //         return criteria;
+        //     }
+        //
+        //     const field = sorting.split(':')[0];
+        //     const direction = sorting.split(':')[1];
+        //
+        //     criteria.addSorting(Criteria.sort(field, direction, false));
+        //
+        //     return criteria;
+        // },
         categoryCriteria() {
             const criteria = new Criteria(1, null);
 
             return criteria;
         },
 
-        productStreamPreviewColumns() {
-            return [
-                {
-                    property: 'name',
-                    label: this.$tc('sw-category.base.products.columnNameLabel'),
-                    dataIndex: 'name',
-                    sortable: false,
-                }, {
-                    property: 'manufacturer.name',
-                    label: this.$tc('sw-category.base.products.columnManufacturerLabel'),
-                    sortable: false,
-                },
-            ];
-        },
+        // productStreamPreviewColumns() {
+        //     return [
+        //         {
+        //             property: 'name',
+        //             label: this.$tc('sw-category.base.products.columnNameLabel'),
+        //             dataIndex: 'name',
+        //             sortable: false,
+        //         }, {
+        //             property: 'manufacturer.name',
+        //             label: this.$tc('sw-category.base.products.columnManufacturerLabel'),
+        //             sortable: false,
+        //         },
+        //     ];
+        // },
     },
 
     created() {
@@ -169,44 +169,44 @@ Component.register('sw-cms-el-config-top-selling-product-slider', {
             }
         },
 
-        onChangeAssignmentType(type) {
-            if (type === 'product_stream') {
-                this.tempProductIds = this.element.config.products.value;
-                this.element.config.products.value = this.tempStreamId;
-            } else {
-                this.tempStreamId = this.element.config.products.value;
-                this.element.config.products.value = this.tempProductIds;
-            }
-        },
+        // onChangeAssignmentType(type) {
+        //     if (type === 'product_stream') {
+        //         this.tempProductIds = this.element.config.products.value;
+        //         this.element.config.products.value = this.tempStreamId;
+        //     } else {
+        //         this.tempStreamId = this.element.config.products.value;
+        //         this.element.config.products.value = this.tempProductIds;
+        //     }
+        // },
 
-        loadProductStream() {
-            this.productStreamRepository
-                .get(this.element.config.products.value, Shopware.Context.api, new Criteria(1, 25))
-                .then((result) => {
-                    this.productStream = result;
-                });
-        },
+        // loadProductStream() {
+        //     this.productStreamRepository
+        //         .get(this.element.config.products.value, Shopware.Context.api, new Criteria(1, 25))
+        //         .then((result) => {
+        //             this.productStream = result;
+        //         });
+        // },
 
-        onChangeProductStream(streamId) {
-            if (streamId === null) {
-                this.productStream = null;
-                return;
-            }
+        // onChangeProductStream(streamId) {
+        //     if (streamId === null) {
+        //         this.productStream = null;
+        //         return;
+        //     }
+        //
+        //     this.loadProductStream();
+        // },
 
-            this.loadProductStream();
-        },
+        // onClickProductStreamPreview() {
+        //     if (this.productStream === null) {
+        //         return;
+        //     }
+        //
+        //     this.showProductStreamPreview = true;
+        // },
 
-        onClickProductStreamPreview() {
-            if (this.productStream === null) {
-                return;
-            }
-
-            this.showProductStreamPreview = true;
-        },
-
-        onCloseProductStreamModal() {
-            this.showProductStreamPreview = false;
-        },
+        // onCloseProductStreamModal() {
+        //     this.showProductStreamPreview = false;
+        // },
 
         onProductsChange() {
             this.element.config.products.value = this.productCollection.getIds();

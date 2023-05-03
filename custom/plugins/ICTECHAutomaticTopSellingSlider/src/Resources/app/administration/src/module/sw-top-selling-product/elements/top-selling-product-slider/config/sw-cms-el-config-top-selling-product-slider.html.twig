@@ -7,28 +7,6 @@
                 class="sw-cms-el-config-top-selling-product-slider__tabs"
                 default-item="content"
             >
-                <template slot-scope="{ active }">
-
-                    {% block sw_cms_element_top_selling_product_slider_config_tab_content %}
-                        <sw-tabs-item
-                            :title="$tc('sw-cms-top-selling-product-slider.elements.general.config.tab.content')"
-                            name="content"
-                            :active-tab="active"
-                        >
-                            {{ $tc('sw-cms-top-selling-product-slider.elements.general.config.tab.content') }}
-                        </sw-tabs-item>
-                    {% endblock %}
-
-                    {% block sw_cms_element_top_selling_product_slider_config_tab_options %}
-                        <sw-tabs-item
-                            :title="$tc('sw-cms-top-selling-product-slider.elements.general.config.tab.settings')"
-                            name="settings"
-                            :active-tab="active"
-                        >
-                            {{ $tc('sw-cms-top-selling-product-slider.elements.general.config.tab.settings') }}
-                        </sw-tabs-item>
-                    {% endblock %}
-                </template>
 
                 <template
                     slot="content"
@@ -43,7 +21,7 @@
 
                             <sw-cms-mapping-field
                                 v-model="element.config.content"
-                                :label="$tc('sw-cms.elements.text.config.label.content')"
+{#                                :label="$tc('sw-cms.elements.text.config.label.content')"#}
                                 value-types="entity"
                                 entity="category"
                             >
@@ -78,173 +56,22 @@
                                 />
                             {% endblock %}
 
-
-{#                            {% block sw_cms_element_top_selling_product_slider_config_content_product_assignment_type %}#}
-{#                                <sw-single-select#}
-{#                                    v-model="element.config.products.source"#}
-{#                                    class="sw-cms-el-config-top-selling-product-slider__product-assignment-type-select"#}
-{#                                    :label="$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.label.productAssignmentType')"#}
-{#                                    :options="productAssignmentTypes"#}
-{#                                    show-clearable-button#}
-{#                                    @change="onChangeAssignmentType"#}
-{#                                />#}
-{#                            {% endblock %}#}
-
-                            <template v-if="element.config.products.source === 'product_stream'">
-
-                                {% block sw_cms_element_top_selling_product_slider_config_content_product_stream_select %}
-                                    <sw-entity-single-select
-                                        v-model="element.config.products.value"
-                                        entity="product_stream"
-                                        class="sw-cms-el-config-top-selling-product-slider__product-stream-select"
-                                        :label="$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.label.productStreamChoice')"
-                                        :placeholder="$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.placeholder.productStreamChoice')"
-                                        show-clearable-button
-                                        @change="onChangeProductStream"
-                                    />
-                                {% endblock %}
-
-
-                                {% block sw_cms_element_top_selling_product_slider_config_content_product_stream_performance_hint %}
-                                    <sw-alert
-                                        class="sw-cms-el-config-top-selling-product-slider__product-stream-performance-hint"
-                                        variant="info"
-                                    >
-                                        {{ $tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.textProductStreamPerformanceHint') }}
-                                    </sw-alert>
-                                {% endblock %}
-
-
-                                {% block sw_cms_element_top_selling_product_slider_config_content_product_stream_preview %}
-                                    <sw-modal
-                                        v-if="showProductStreamPreview"
-                                        :title="productStream.name"
-                                        class="sw-cms-el-config-top-selling-product-slider__product-stream-preview-modal"
-                                        @modal-close="onCloseProductStreamModal"
-                                    >
-
-                                        {% block sw_cms_element_top_selling_product_slider_config_content_product_stream_preview_grid %}
-                                            <sw-product-stream-grid-preview
-                                                :filters="productStream.apiFilter"
-                                                :columns="productStreamPreviewColumns"
-                                                :criteria="productStreamCriteria"
-                                            />
-                                        {% endblock %}
-                                        <template #modal-footer>
-
-                                            {% block sw_cms_element_top_selling_product_slider_config_content_product_stream_preview_action_close %}
-                                                <sw-button
-                                                    size="small"
-                                                    @click="onCloseProductStreamModal"
-                                                >
-                                                    {{ $tc('global.sw-modal.labelClose') }}
-                                                </sw-button>
-                                            {% endblock %}
-                                        </template>
-                                    </sw-modal>
-                                {% endblock %}
-
-                                <sw-container
-                                    columns="1fr 1fr"
-                                    gap="30px"
+                            {% block sw_cms_element_top_selling_product_slider_config_settings_box_layout %}
+                                <sw-select-field
+                                    v-model="element.config.boxLayout.value"
+                                    :label="$tc('sw-cms-top-selling-product-slider.elements.general.config.label.layoutType')"
                                 >
-
-                                    {% block sw_cms_element_top_selling_product_slider_config_content_product_stream_sorting %}
-                                        <sw-single-select
-                                            v-model="element.config.productStreamSorting.value"
-                                            :label="$tc('sw-cms-top-selling-product-slider.elements.productSlider.config.label.productStreamSorting')"
-                                            class="sw-cms-el-config-top-selling-product-slider__product-stream-sorting"
-                                            :disabled="!productStream"
-                                            :placeholder="$tc('sw-cms-top-selling-product-slider.elements.productSlider.config.placeholder.productStreamSorting')"
-                                            :options="productStreamSortingOptions"
-                                            show-clearable-button
-                                        />
-                                    {% endblock %}
-
-
-                                    {% block sw_cms_element_top_selling_product_slider_config_content_product_stream_limit %}
-                                        <sw-number-field
-                                            v-model="element.config.productStreamLimit.value"
-                                            :label="$tc('sw-cms-top-selling-product-slider.elements.productSlider.config.label.productStreamLimit')"
-                                            class="sw-cms-el-config-top-selling-product-slider__product-stream-limit"
-                                            :disabled="!productStream"
-                                            :min="1"
-                                        />
-                                    {% endblock %}
-                                </sw-container>
-
-
-                                {% block sw_cms_element_top_selling_product_slider_config_content_product_stream_preview_link %}
-                                    <div class="sw-cms-el-config-top-selling-product-slider__product-stream-preview-link-container">
-                                        <a
-                                            class="sw-cms-el-config-top-selling-product-slider__product-stream-preview-link link"
-                                            :class="{ 'is--disabled': !productStream }"
-                                            href="#"
-                                            @click.prevent="onClickProductStreamPreview"
-                                        >
-                                            {{ $tc('sw-cms-top-selling-product-slider.elements.productSlider.config.textProductStreamPreviewLink') }}
-                                            <sw-icon
-                                                name="regular-long-arrow-right"
-                                                small
-                                            />
-                                        </a>
-                                    </div>
-                                {% endblock %}
-                            </template>
-
-
-                            {% block sw_cms_element_top_selling_product_slider_config_content_products %}
-                                <sw-entity-multi-select
-                                    v-else
-                                    v-model="productCollection"
-                                    class="sw-cms-el-config-top-selling-product-slider__products"
-                                    :label="$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.label.selection')"
-                                    :placeholder="$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.placeholder.selection')"
-                                    :context="productMultiSelectContext"
-                                    :criteria="productMediaFilter"
-                                    @change="onProductsChange"
-                                >
-                                    <template #selection-label-property="{ item }">
-                                        <sw-product-variant-info
-                                            :variations="item.variation"
-                                        >
-                                            {{ item.translated.name || item.name }}
-                                        </sw-product-variant-info>
-                                    </template>
-                                    <template #result-item="{ item, index }">
-                                        <slot
-                                            name="result-item"
-                                            v-bind="{ item, index }"
-                                        >
-                                            <li
-                                                is="sw-select-result"
-                                                v-bind="{ item, index, selected: isSelected(item.id)}"
-                                            >
-
-                                                {% block sw_entity_single_select_base_results_list_result_label %}
-                                                    <span class="sw-select-result__result-item-text">
-                                    <sw-product-variant-info
-                                        :variations="item.variation"
-                                    >
-                                        {{ item.translated.name || item.name }}
-                                    </sw-product-variant-info>
-                                </span>
-                                                {% endblock %}
-                                            </li>
-                                        </slot>
-                                    </template>
-                                </sw-entity-multi-select>
+                                    <option value="standard">
+                                        {{ $tc('sw-cms-top-selling-product-slider.elements.general.config.label.layoutTypeStandard') }}
+                                    </option>
+                                    <option value="image">
+                                        {{ $tc('sw-cms-top-selling-product-slider.elements.general.config.label.layoutTypeImage') }}
+                                    </option>
+                                    <option value="minimal">
+                                        {{ $tc('sw-cms-top-selling-product-slider.elements.general.config.label.layoutTypeMinimal') }}
+                                    </option>
+                                </sw-select-field>
                             {% endblock %}
-                        </sw-container>
-                    {% endblock %}
-
-
-                    {% block sw_cms_element_top_selling_product_slider_config_settings %}
-                        <sw-container
-                            v-if="active === 'settings'"
-                            class="sw-cms-el-config-top-selling-product-slider__tab-settings"
-                        >
-
 
                             {% block sw_cms_element_top_selling_product_slider_config_settings_display_mode %}
                                 <sw-select-field
@@ -263,12 +90,11 @@
                                 </sw-select-field>
                             {% endblock %}
 
-
                             {% block sw_cms_element_top_selling_product_slider_config_settings_vertical_align %}
                                 <sw-select-field
                                     v-model="element.config.verticalAlign.value"
                                     :label="$tc('sw-cms-top-selling-product-slider.elements.general.config.label.verticalAlign')"
-                                    :placeholder="$tc('sw-cms.elements.general.config.label.verticalAlign')"
+                                    :placeholder="$tc('sw-cms-top-selling-product-slider.elements.general.config.label.verticalAlign')"
                                 >
                                     <option value="flex-start">
                                         {{ $tc('sw-cms-top-selling-product-slider.elements.general.config.label.verticalAlignTop') }}
@@ -282,65 +108,88 @@
                                 </sw-select-field>
                             {% endblock %}
 
-
-                            {% block sw_cms_element_top_selling_product_slider_config_settings_box_layout %}
+                            {% block sw_cms_element_top_selling_product_slider_config_top_selling_product %}
                                 <sw-select-field
-                                    v-model="element.config.boxLayout.value"
-                                    :label="$tc('sw-cms-top-selling-product-slider.elements.general.config.label.layoutType')"
+                                    v-model="element.config.bestSellProductDay.value"
+                                    :label="$tc('sw-cms-top-selling-product-slider.elements.general.config.label.bestSellProductDay')"
+                                    :placeholder="$tc('sw-cms-top-selling-product-slider.elements.general.config.label.bestSellDaysSelection')"
                                 >
-                                    <option value="standard">
-                                        {{ $tc('sw-cms-top-selling-product-slider.elements.general.config.label.layoutTypeStandard') }}
+                                    <option value="7">
+                                        {{ $tc('sw-cms-top-selling-product-slider.elements.general.config.label.displayBestSellSevenDays') }}
                                     </option>
-                                    <option value="image">
-                                        {{ $tc('sw-cms-top-selling-product-slider.elements.general.config.label.layoutTypeImage') }}
+                                    <option value="30">
+                                        {{ $tc('sw-cms-top-selling-product-slider.elements.general.config.label.displayBestSellThirtyDays') }}
                                     </option>
-                                    <option value="minimal">
-                                        {{ $tc('sw-cms-top-selling-product-slider.elements.general.config.label.layoutTypeMinimal') }}
+
+                                </sw-select-field>
+                            {% endblock %}
+
+                            {% block sw_cms_element_top_selling_product_slider_config_top_selling_product_multiple %}
+                                <sw-select-field
+                                    v-model="element.config.bestSellProductMultiple.value"
+                                    :label="$tc('sw-cms-top-selling-product-slider.elements.general.config.label.bestSellProductMultiple')"
+                                    :placeholder="$tc('sw-cms-top-selling-product-slider.elements.general.config.label.bestSellMultipleSelection')"
+                                >
+                                    <option value="3">
+                                        {{ $tc('sw-cms-top-selling-product-slider.elements.general.config.label.displayBestSellThreeMultiple') }}
                                     </option>
+                                    <option value="6">
+                                        {{ $tc('sw-cms-top-selling-product-slider.elements.general.config.label.displayBestSellSixMultiple') }}
+                                    </option>
+                                    <option value="9">
+                                        {{ $tc('sw-cms-top-selling-product-slider.elements.general.config.label.displayBestSellNineMultiple') }}
+                                    </option>
+
                                 </sw-select-field>
                             {% endblock %}
 
 
-                            {% block sw_cms_element_top_selling_product_slider_config_settings_navigation %}
-                                <sw-field
-                                    v-model="element.config.navigation.value"
-                                    type="switch"
-                                    bordered
-                                    :label="$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.label.navigation')"
-                                />
-                            {% endblock %}
 
+{#                            {% block sw_cms_element_top_selling_product_slider_config_content_products %}#}
+{#                                <sw-entity-multi-select#}
+{#                                    v-model="productCollection"#}
+{#                                    class="sw-cms-el-config-top-selling-product-slider__products"#}
+{#                                    :label="$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.label.selection')"#}
+{#                                    :placeholder="$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.placeholder.selection')"#}
+{#                                    :context="productMultiSelectContext"#}
+{#                                    :criteria="productMediaFilter"#}
+{#                                    @change="onProductsChange"#}
+{#                                >#}
+{#                                    <template #selection-label-property="{ item }">#}
+{#                                        <sw-product-variant-info#}
+{#                                            :variations="item.variation"#}
+{#                                        >#}
+{#                                            {{ item.translated.name || item.name }}#}
+{#                                        </sw-product-variant-info>#}
+{#                                    </template>#}
+{#                                    <template #result-item="{ item, index }">#}
+{#                                        <slot#}
+{#                                            name="result-item"#}
+{#                                            v-bind="{ item, index }"#}
+{#                                        >#}
+{#                                            <li#}
+{#                                                is="sw-select-result"#}
+{#                                                v-bind="{ item, index, selected: isSelected(item.id)}"#}
+{#                                            >#}
 
-                            {% block sw_cms_element_top_selling_product_slider_config_settings_rotate %}
-                                <sw-field
-                                    v-model="element.config.rotate.value"
-                                    type="switch"
-                                    bordered
-                                    :label="$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.label.rotate')"
-                                />
-                            {% endblock %}
-
-
-                            {% block sw_cms_element_top_selling_product_slider_config_settings_border %}
-                                <sw-field
-                                    v-model="element.config.border.value"
-                                    type="switch"
-                                    bordered
-                                    :label="$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.label.border')"
-                                />
-                            {% endblock %}
-
-
-                            {% block sw_cms_element_top_selling_product_slider_config_settings_min_width %}
-                                <sw-field
-                                    v-model="element.config.elMinWidth.value"
-                                    type="text"
-                                    :label="$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.label.minWidth')"
-                                    :placeholder="$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.placeholder.minWidth')"
-                                />
-                            {% endblock %}
+{#                                                {% block sw_entity_single_select_base_results_list_result_label %}#}
+{#                                                    <span class="sw-select-result__result-item-text">#}
+{#                                    <sw-product-variant-info#}
+{#                                        :variations="item.variation"#}
+{#                                    >#}
+{#                                        {{ item.translated.name || item.name }}#}
+{#                                    </sw-product-variant-info>#}
+{#                                </span>#}
+{#                                                {% endblock %}#}
+{#                                            </li>#}
+{#                                        </slot>#}
+{#                                    </template>#}
+{#                                </sw-entity-multi-select>#}
+{#                            {% endblock %}#}
                         </sw-container>
                     {% endblock %}
+
+
                 </template>
             </sw-tabs>
         {% endblock %}
