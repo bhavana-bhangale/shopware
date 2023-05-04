@@ -19,7 +19,7 @@ Component.register('sw-cms-el-config-top-selling-product-slider', {
 
     data() {
         return {
-            productCollection: null,
+            // productCollection: null,
             // productStream: null,
             // showProductStreamPreview: false,
 
@@ -30,11 +30,17 @@ Component.register('sw-cms-el-config-top-selling-product-slider', {
     },
 
     computed: {
-        productRepository() {
-            return this.repositoryFactory.create('product');
-        },
+        // productRepository() {
+        //     return this.repositoryFactory.create('product');
+        // },
         categoryRepository() {
             return this.repositoryFactory.create('category');
+        },
+        categorySelectContext() {
+            return {
+                ...Shopware.Context.api,
+                inheritance: true,
+            };
         },
 
         // productStreamRepository() {
@@ -64,15 +70,15 @@ Component.register('sw-cms-el-config-top-selling-product-slider', {
             return context;
         },
 
-        productAssignmentTypes() {
-            return [{
-                label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productAssignmentTypeOptions.manual'),
-                value: 'static',
-            }, {
-                label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productAssignmentTypeOptions.productStream'),
-                value: 'product_stream',
-            }];
-        },
+        // productAssignmentTypes() {
+        //     return [{
+        //         label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productAssignmentTypeOptions.manual'),
+        //         value: 'static',
+        //     }, {
+        //         label: this.$tc('sw-cms-top-selling-product-slider.elements.topSellingProductSlider.config.productAssignmentTypeOptions.productStream'),
+        //         value: 'product_stream',
+        //     }];
+        // },
 
         // productStreamSortingOptions() {
         //     return [{
@@ -115,11 +121,11 @@ Component.register('sw-cms-el-config-top-selling-product-slider', {
         //
         //     return criteria;
         // },
-        categoryCriteria() {
-            const criteria = new Criteria(1, null);
-
-            return criteria;
-        },
+        // categoryCriteria() {
+        //     const criteria = new Criteria(1, null);
+        //
+        //     return criteria;
+        // },
 
         // productStreamPreviewColumns() {
         //     return [
@@ -144,29 +150,42 @@ Component.register('sw-cms-el-config-top-selling-product-slider', {
     methods: {
         createdComponent() {
             this.initElementConfig('top-selling-product-slider');
+            // console.log(this.element.config)
+            // this.productCollection = new EntityCollection('/product', 'product', Shopware.Context.api);
 
-            this.productCollection = new EntityCollection('/product', 'product', Shopware.Context.api);
-
-            if (this.element.config.products.value.length <= 0) {
-                return;
-            }
-
-            if (this.element.config.products.source === 'product_stream') {
-                this.loadProductStream();
+            // if (this.element.config.products.value.length <= 0) {
+            //     return;
+            // }
+            //
+            // if (this.element.config.products.source === 'product_stream') {
+            //     this.loadProductStream();
+            // } else {
+            //     // We have to fetch the assigned entities again
+            //     // ToDo: Fix with NEXT-4830
+            //     const criteria = new Criteria(1, 100);
+            //     criteria.addAssociation('cover');
+            //     criteria.addAssociation('options.group');
+            //     criteria.setIds(this.element.config.products.value);
+            //
+            //     this.productRepository
+            //         .search(criteria, Object.assign({}, Shopware.Context.api, { inheritance: true }))
+            //         .then((result) => {
+            //             this.productCollection = result;
+            //         });
+            // }
+        },
+        onChangeCategory(categoryId) {
+            if (!categoryId) {
+                this.element.config.category.value = null;
+                this.$set(this.element.data, 'category', null);
             } else {
-                // We have to fetch the assigned entities again
-                // ToDo: Fix with NEXT-4830
-                const criteria = new Criteria(1, 100);
-                criteria.addAssociation('cover');
-                criteria.addAssociation('options.group');
-                criteria.setIds(this.element.config.products.value);
-
-                this.productRepository
-                    .search(criteria, Object.assign({}, Shopware.Context.api, { inheritance: true }))
-                    .then((result) => {
-                        this.productCollection = result;
+                this.categoryRepository.get(categoryId, this.categorySelectContext)
+                    .then((category) => {
+                        this.element.config.category.value = categoryId;
+                        this.$set(this.element.data, 'category', category);
                     });
             }
+            this.$emit('element-update', this.element);
         },
 
         // onChangeAssignmentType(type) {
@@ -207,19 +226,45 @@ Component.register('sw-cms-el-config-top-selling-product-slider', {
         // onCloseProductStreamModal() {
         //     this.showProductStreamPreview = false;
         // },
-
-        onProductsChange() {
-            this.element.config.products.value = this.productCollection.getIds();
-
-            if (!this.element?.data) {
-                return;
+        emitChanges(content) {
+            if (content !== this.element.config.content.value) {
+                this.element.config.content.value = content;
+                this.$emit('element-update', this.element);
             }
+        },
+        getAllowedMappingTypes() {
+            let types = [];
 
-            this.$set(this.element.data, 'products', this.productCollection);
+            if (this.valueTypes === 'entity') {
+                if (this.entity !== null &&
+                    this.mappingTypes.entity &&
+                    this.mappingTypes.entity[this.entity]) {
+                    types = this.mappingTypes.entity[this.entity];
+                }
+            } else {
+                Object.keys(this.mappingTypes).forEach((type) => {
+                    if (type === this.valueTypes || this.valueTypes.includes(type)) {
+                        types = [...types, ...this.mappingTypes[type]];
+                        types.sort();
+                    }
+                });
+            }
+            // console.log(types);
         },
 
-        isSelected(itemId) {
-            return this.productCollection.has(itemId);
-        },
+
+        // onProductsChange() {
+        //     this.element.config.products.value = this.productCollection.getIds();
+        //
+        //     if (!this.element?.data) {
+        //         return;
+        //     }
+        //
+        //     this.$set(this.element.data, 'products', this.productCollection);
+        // },
+
+        // isSelected(itemId) {
+        //     return this.productCollection.has(itemId);
+        // },
     },
 });

@@ -19,12 +19,39 @@
                             class="sw-cms-el-config-top-selling-product-slider__tab-content"
                         >
 
-                            <sw-cms-mapping-field
+                            <sw-cms-mapping-field-top-sell-product
                                 v-model="element.config.content"
 {#                                :label="$tc('sw-cms.elements.text.config.label.content')"#}
-                                value-types="entity"
-                                entity="category"
+                                value-types="string"
+                                @change="onChangeCategory"
                             >
+{#                                <sw-text-editor#}
+{#                                    v-model="element.config.content.value"#}
+{#                                    :allow-inline-data-mapping="true"#}
+{#                                    sanitize-input#}
+{#                                    @input="onInput"#}
+{#                                    @blur="onBlur"#}
+{#                                />#}
+
+                                <div
+                                    slot="preview"
+                                    slot-scope="{ demoValue }"
+                                    class="sw-cms-el-config-top-selling-product-slider__mapping-preview"
+                                >
+                                    <div v-html="$sanitize(demoValue)"></div>
+                                </div>
+                            </sw-cms-mapping-field-top-sell-product>
+
+{#                            <sw-cms-mapping-field#}
+{#                                v-model="element.config.content"#}
+{#                                :label="$tc('sw-cms.elements.text.config.label.content')"#}
+{#                                value-types="string"#}
+
+{#                                v-model="element.config.content.value"#}
+{#                                :label="$tc('sw-cms.elements.text.config.label.content')"#}
+{#                                value-types="entity"#}
+{#                                entity="category"#}
+{#                            >#}
 {#                                <sw-entity-single-select#}
 {#                                    v-model="category.categoryId"#}
 {#                                    class="sw-category-detail__category-single-select"#}
@@ -37,14 +64,15 @@
 {#                                    :error="brandsManufacturerIdError"#}
 {#                                    required#}
 {#                                />#}
-                                <div
-                                    slot="preview"
-                                    slot-scope="{ demoValue }"
-                                    class="sw-cms-el-config-top-selling-product-slider__mapping-preview"
-                                >
-                                    <div v-html="$sanitize(demoValue)"></div>
-                                </div>
-                            </sw-cms-mapping-field>
+{#                                <div#}
+{#                                    slot="preview"#}
+{#                                    slot-scope="{ demoValue }"#}
+{#                                    class="sw-cms-el-config-top-selling-product-slider__mapping-preview"#}
+{#                                >#}
+{#                                    <div v-html="$sanitize(demoValue)"></div>#}
+{#                                </div>#}
+{#                            </sw-cms-mapping-field>#}
+
 
 
                             {% block sw_cms_element_top_selling_product_slider_config_content_title %}

@@ -1,4 +1,5 @@
 {% block element_top_selling_product_slider %}
+    {{ dump(element) }}
     {% if not sliderConfig %}
         {% set sliderConfig = element.fieldConfig.elements %}
     {% endif %}

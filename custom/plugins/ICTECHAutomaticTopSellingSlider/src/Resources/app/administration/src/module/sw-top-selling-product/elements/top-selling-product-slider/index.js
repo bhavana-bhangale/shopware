@@ -17,14 +17,18 @@ Shopware.Service('cmsService').registerCmsElement({
     configComponent: 'sw-cms-el-config-top-selling-product-slider',
     previewComponent: 'sw-cms-el-preview-top-selling-product-slider',
     defaultConfig: {
-        products: {
+        // products: {
+        //     source: 'static',
+        //     value: [],
+        //     required: true,
+        //     entity: {
+        //         name: 'product',
+        //         criteria: criteria,
+        //     },
+        // },
+        content: {
             source: 'static',
-            value: [],
-            required: true,
-            entity: {
-                name: 'product',
-                criteria: criteria,
-            },
+            value: null
         },
         title: {
             source: 'static',
@@ -60,21 +64,13 @@ Shopware.Service('cmsService').registerCmsElement({
         },
         bestSellProductDay: {
             source: 'static',
-            value: 'days',
+            value: null,
         },
         bestSellProductMultiple: {
             source: 'static',
-            value: 'multiple',
+            value: null,
         },
 
-        productStreamSorting: {
-            source: 'static',
-            value: 'name:ASC',
-        },
-        productStreamLimit: {
-            source: 'static',
-            value: 10,
-        },
     },
     collect: Shopware.Service('cmsService').getCollectFunction(),
 });

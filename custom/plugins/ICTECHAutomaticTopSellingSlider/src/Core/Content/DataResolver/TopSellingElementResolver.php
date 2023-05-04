@@ -11,7 +11,7 @@ class TopSellingElementResolver extends AbstractCmsElementResolver
 
     public function getType(): string
     {
-        // TODO: Implement getType() method.
+        return 'top-selling-product-slider';
     }
 
     public function collect(CmsSlotEntity $slot, ResolverContext $resolverContext): ?CriteriaCollection

@@ -102,6 +102,11 @@ Component.register('sw-cms-el-top-selling-product-slider', {
         mountedComponent() {
             this.setSliderRowLimit();
         },
+        updateDemoValue() {
+            if (this.element.config.content.source === 'mapped') {
+                this.demoValue = this.getDemoValue(this.element.config.content.value);
+            }
+        },
 
         setSliderRowLimit() {
             if (this.currentDeviceView === 'mobile' || this.$refs.productHolder.offsetWidth < 500) {
@@ -150,5 +155,11 @@ Component.register('sw-cms-el-top-selling-product-slider', {
                 },
             };
         },
+        // emitChanges(content) {
+        //     if (content !== this.element.config.content.value) {
+        //         this.element.config.content.value = content;
+        //         this.$emit('element-update', this.element);
+        //     }
+        // },
     },
 });
