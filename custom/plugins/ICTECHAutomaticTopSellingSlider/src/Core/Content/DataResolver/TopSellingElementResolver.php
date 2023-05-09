@@ -11,16 +11,16 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Sorting\FieldSorting;
 use Shopware\Core\System\SystemConfig\SystemConfigService;
+use Symfony\Component\HttpFoundation\Request;
 
 class TopSellingElementResolver extends AbstractCmsElementResolver
 {
     private EntityRepository  $orderLineItemRepository;
     private SystemConfigService $systemConfigService;
 
-    /**
-     * @return EntityRepositoryInterface
-     */
+
     public function __construct(
         EntityRepository $orderLineItemRepository,
         SystemConfigService $systemConfigService
@@ -42,13 +42,11 @@ class TopSellingElementResolver extends AbstractCmsElementResolver
         $criteria= new Criteria();
         $criteria->addAssociation('product');
         $criteria->addAssociation('product.categories');
-//        $criteria->addFilter(new EqualsFilter('id','01108535f4ec449c978d1615ad7638ea'));
-//        $collection->add(
-//            'top-selling-product-slider-data',
-//            OrderLineItemDefinition::class,
-//            $criteria
-//        );
-//        dd($collection);
+        $collection->add(
+            'top-selling-product-slider-data',
+            OrderLineItemDefinition::class,
+            $criteria
+        );
 
 //        $criteria->addFilter(new EqualsFilter('product.categories.id',$categoryId));
         return $collection->all() ? $collection : null;
@@ -57,19 +55,79 @@ class TopSellingElementResolver extends AbstractCmsElementResolver
     public function enrich(CmsSlotEntity $slot, ResolverContext $resolverContext, ElementDataCollection $result): void
     {
         $slot->setData($result->get('top-selling-product-slider-data'));
-        dd($slot);
+        $context = $resolverContext->getSalesChannelContext()->getContext();
+        $config = $slot->getFieldConfig();
 
-        if ($productConfig->isMapped() && $resolverContext instanceof EntityResolverContext) {
-            $product = $this->resolveEntityValue($resolverContext->getEntity(), $productConfig->getStringValue());
+
+
+//        dd($config);
+
+        $criteria= new Criteria();
+//        $criteria->addAssociation('orderLineItems.quantity');
+        $criteria->addAssociation('product');
+        $criteria->addAssociation('product.manufacturer');
+        $criteria->addAssociation('product.options.group');
+        $criteria->addAssociation('product.options.group.translations');
+        $criteria->addAssociation('product.cover');
+        $criteria->addAssociation('product.media');
+        $criteria->addAssociation('product.categories');
+//        $criteria->addFilter(new EqualsFilter('id','01108535f4ec449c978d1615ad7638ea'));
+//        $products = $this->orderLineItemRepository->search($criteria,$resolverContext->getSalesChannelContext()->getContext());
+//        foreach ($products->getElements() as $_product){
+//            dd($_product->product);
+//        }
+        $criteria->addSorting(new FieldSorting('quantity', FieldSorting::DESCENDING));
+        $productCollection=$this->orderLineItemRepository->search($criteria,$context)->getElements();
+
+        $products = [];
+
+        foreach ($productCollection as $key => $value) {
+            $productId = $value->productId;
+            if($value->product !== null ){
+                $productId = $value->product->id;
+                $productNumber = $value->product->productNumber;
+                array_key_exists($productNumber, $products) ?
+                    $products[$productNumber]->quantity = $products[$productNumber]->quantity + $value->quantity  :
+                    $products[$productNumber] = $value ;
+            }
+//            if($productId !== null){
+//                array_key_exists($productId, $products) ?
+//                    $products[$productId]->quantity = $products[$productId]->quantity + $value->quantity  :
+//                    $products[$productId] = $value ;
+//                dump(array_key_exists($productId, $products) ? $products[$productId]->quantity: "no");
+//            }
+            $variantNames[$value->id] = $value->label;
         }
+
+//        usort($products, function ($a, $b) {
+//            if($a->quantity == $b->quantity)
+//                return 0;
+//            return $a->quantity < $b->quantity ? 1 : -1;
+//        });
+
+//        foreach ($productCollection as $key => $item) {
+//            if($item->name === null){
+//                $parentId = $item->parentId;
+//                $variantProduct = $this->variantProductName($parentId,$resolverContext);
+//                $variantNames[$item->id] = $variantProduct[$parentId]->translated['name'];
+//            }
+//            else{
+//                $variantNames[$item->id] = $item->translated['name'];
+//            }
+//            $topProducts[] = $item;
+//        }
+        dd($products);
+//        dd($collection);
         return ;
 
 
+    }
 
-
-
-
-
-
+    public function variantProductName($parentId,$context){
+//        $variantCriteria = new Criteria();
+////        $variantCriteria->addAssociation('translations');
+////        $variantCriteria->addFilter(new EqualsFilter('id',$parentId));
+////        $variantItem = $this->orderLineItemRepository->search($variantCriteria,$context)->getElements();
+//        return $variantItem;
     }
 }
