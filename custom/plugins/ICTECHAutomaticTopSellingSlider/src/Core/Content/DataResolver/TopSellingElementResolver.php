@@ -71,6 +71,7 @@ class TopSellingElementResolver extends AbstractCmsElementResolver
         $criteria->addAssociation('product.cover');
         $criteria->addAssociation('product.media');
         $criteria->addAssociation('product.categories');
+//        $criteria->addFilter(new EqualsFilter("product.id","2967e7db2a4e43ed87fcde9ac4725828"));
 //        $criteria->addFilter(new EqualsFilter('id','01108535f4ec449c978d1615ad7638ea'));
 //        $products = $this->orderLineItemRepository->search($criteria,$resolverContext->getSalesChannelContext()->getContext());
 //        foreach ($products->getElements() as $_product){
@@ -84,40 +85,25 @@ class TopSellingElementResolver extends AbstractCmsElementResolver
         foreach ($productCollection as $key => $value) {
             $productId = $value->productId;
             if($value->product !== null ){
-                $productId = $value->product->id;
-                $productNumber = $value->product->productNumber;
-                array_key_exists($productNumber, $products) ?
-                    $products[$productNumber]->quantity = $products[$productNumber]->quantity + $value->quantity  :
-                    $products[$productNumber] = $value ;
+//                $productId = $value->product->id;
+//                dump($value->product);
+//                $productId= $value->product->id;
+                $parentId=$value->product->parentId;
+                $productId = ($parentId !== null)? $value->product->parentId : $value->product->id;
+                array_key_exists($productId, $products) ?
+                    $products[$productId]->quantity = $products[$productId]->quantity + $value->quantity  :
+                    $products[$productId] = $value ;
             }
-//            if($productId !== null){
-//                array_key_exists($productId, $products) ?
-//                    $products[$productId]->quantity = $products[$productId]->quantity + $value->quantity  :
-//                    $products[$productId] = $value ;
-//                dump(array_key_exists($productId, $products) ? $products[$productId]->quantity: "no");
-//            }
             $variantNames[$value->id] = $value->label;
         }
 
-//        usort($products, function ($a, $b) {
-//            if($a->quantity == $b->quantity)
-//                return 0;
-//            return $a->quantity < $b->quantity ? 1 : -1;
-//        });
+        usort($products, function ($a, $b) {
+            if($a->quantity == $b->quantity)
+                return 0;
+            return $a->quantity < $b->quantity ? 1 : -1;
+        });
 
-//        foreach ($productCollection as $key => $item) {
-//            if($item->name === null){
-//                $parentId = $item->parentId;
-//                $variantProduct = $this->variantProductName($parentId,$resolverContext);
-//                $variantNames[$item->id] = $variantProduct[$parentId]->translated['name'];
-//            }
-//            else{
-//                $variantNames[$item->id] = $item->translated['name'];
-//            }
-//            $topProducts[] = $item;
-//        }
         dd($products);
-//        dd($collection);
         return ;
 
 
